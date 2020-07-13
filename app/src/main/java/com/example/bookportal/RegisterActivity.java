@@ -37,7 +37,7 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class RegisterActivity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText mName;
     private EditText mEmail;
@@ -45,21 +45,19 @@ public class RegisterActivity extends AppCompatActivity{
     private Button mRegBtn;
 
     private FirebaseAuth mAuth;
-    private FirebaseFirestore mStore , test;
-    private DatabaseReference databaseReferenceCombi, databaseReferenceCollege;
+    private FirebaseFirestore mStore;
+
 
     private Spinner combinationSpinner;
     private Spinner collegeSpinner;
 
-    ValueEventListener listener,listener1;
-    ArrayAdapter<String> adapter,adapter1;
-    ArrayList<String> spinnerCombiData,spinnerColleData;
 
-    CollectionReference subjectsRef , tester;
+    ArrayAdapter<String> adapter, adapter1;
+    ArrayList<String> spinnerCombiData, spinnerColleData;
 
-    String college;
-    String combination;
+    CollectionReference subjectsRef;
 
+    String college, combination;
 
 
     @Override
@@ -68,10 +66,10 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.activity_register);
 
         setContentView(R.layout.activity_register);
-        mName= findViewById(R.id.reg_name);
-        mEmail= findViewById(R.id.reg_email);
-        mPassword= findViewById(R.id.reg_password);
-        mRegBtn= findViewById(R.id.reg_btn);
+        mName = findViewById(R.id.reg_name);
+        mEmail = findViewById(R.id.reg_email);
+        mPassword = findViewById(R.id.reg_password);
+        mRegBtn = findViewById(R.id.reg_btn);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -81,22 +79,20 @@ public class RegisterActivity extends AppCompatActivity{
 
 
         combinationSpinner = findViewById(R.id.combinationSpinner);
-        collegeSpinner= findViewById(R.id.collegespinner);
+        collegeSpinner = findViewById(R.id.collegespinner);
 
         spinnerCombiData = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_spinner_dropdown_item,spinnerCombiData);
+        adapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, spinnerCombiData);
         combinationSpinner.setAdapter(adapter);
 
         getSpinnerData();
-
-
 
 
         combinationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 combination = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), combination +" +", Toast.LENGTH_SHORT).show();
+                Toast.makeText(parent.getContext(), combination + " +", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -107,10 +103,8 @@ public class RegisterActivity extends AppCompatActivity{
         });
 
 
-
-
         spinnerColleData = new ArrayList<>();
-        adapter1 = new ArrayAdapter<String>(RegisterActivity.this,android.R.layout.simple_spinner_dropdown_item,spinnerColleData);
+        adapter1 = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, spinnerColleData);
         collegeSpinner.setAdapter(adapter1);
 
         collegeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -130,46 +124,39 @@ public class RegisterActivity extends AppCompatActivity{
         });
 
 
-
-
-
-
-
-
-
         mRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = mName.getText().toString();
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-                if(!name.isEmpty() && !email.isEmpty() && !password.isEmpty()){
-                    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 userDataUpdate();
                                 Toast.makeText(RegisterActivity.this, "Account successfully created", Toast.LENGTH_SHORT).show();
 
-                            }else{
-                                Toast.makeText(RegisterActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                             }
 
                         }
                     });// we can put error listener too
 
-                }else{
+                } else {
                     Toast.makeText(RegisterActivity.this, "Please fill empty field", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void userDataUpdate(){
+    public void userDataUpdate() {
 
-        Map<String,String> mMap = new HashMap<>();
-        mMap.put("college",college);
-        mMap.put("combination",combination);
+        Map<String, String> mMap = new HashMap<>();
+        mMap.put("college", college);
+        mMap.put("combination", combination);
 
         //important stuff
         // mAuth.getCurrentUser().getUid() (the current user id)
@@ -177,9 +164,9 @@ public class RegisterActivity extends AppCompatActivity{
                 .collection("Path").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    Intent intent = new Intent(RegisterActivity.this,OperationActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, OperationActivity.class);
                     startActivity(intent);
 
                 }
@@ -189,8 +176,7 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
 
-    public void getSpinnerData(){
-
+    public void getSpinnerData() {
 
 
         subjectsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -208,35 +194,33 @@ public class RegisterActivity extends AppCompatActivity{
         });
 
 
-
     }
 
     public void signIn(View view) {
 
-        Intent intent =new Intent(RegisterActivity.this,LoginActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void   updateNext(){
+    public void updateNext() {
 
 
         subjectsRef.document(college).collection("Combination").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
 
-                        if (task.isSuccessful()) {
-                            spinnerCombiData.clear();
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String subject = document.getString("department");
-                                spinnerCombiData.add(subject);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-
+                if (task.isSuccessful()) {
+                    spinnerCombiData.clear();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String subject = document.getString("department");
+                        spinnerCombiData.add(subject);
                     }
-                });
+                    adapter.notifyDataSetChanged();
+                }
 
+            }
+        });
 
 
     }
