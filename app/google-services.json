@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33794841399",
+    "firebase_url": "https://bookportal-60ae2.firebaseio.com",
+    "project_id": "bookportal-60ae2",
+    "storage_bucket": "bookportal-60ae2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33794841399:android:83189ebd5c720304cdd8b2",
+        "android_client_info": {
+          "package_name": "com.example.bookportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33794841399-vq4mjincu2fmf04pk206l64l9g9aduvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKSD1wBgimaICoCeTKTxUEyRoeHh0m10w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33794841399-vq4mjincu2fmf04pk206l64l9g9aduvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
