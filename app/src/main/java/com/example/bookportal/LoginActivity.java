@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPassword;
     private Button mLoginBtn;
     private FirebaseAuth mAuth;
+    private ProgressBar mProgressCircle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,10 @@ public class LoginActivity extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.log_btn);
         mAuth = FirebaseAuth.getInstance();
 
+        mProgressCircle = findViewById(R.id.progress_circle);
+
+        mProgressCircle.setVisibility(View.INVISIBLE);
+
 
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -42,14 +48,17 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
                 if(!email.isEmpty()&& !password.isEmpty()){
+                    mProgressCircle.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                mProgressCircle.setVisibility(View.INVISIBLE);
                                 Toast.makeText(LoginActivity.this, "Login Successful !", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this,OperationActivity.class);
                                 startActivity(intent);
                             }else{
+                                mProgressCircle.setVisibility(View.INVISIBLE);
                                 Toast.makeText(LoginActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             }
 
@@ -57,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            mProgressCircle.setVisibility(View.INVISIBLE);
                             Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }

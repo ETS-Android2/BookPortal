@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,7 +25,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -42,12 +42,16 @@ public class SellActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private Button mButtonChooseImage;
+    private ImageButton mButtonChooseImage;
     private Button mButtonUpload;
-    private TextView mTextViewShowUploads;
-    private EditText mEditTextFileName;
+    //private TextView mBookName;
+    private EditText mBookName;
+    private EditText mAuthorName;
+    private EditText mDescription;
     private ProgressBar mProgressBar;
+    private ProgressBar mProgressCircle;
     private ImageView mImageView;
+    private TextView offView;
 
     private Uri mImageUri;
 
@@ -58,9 +62,9 @@ public class SellActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-    String collegePath, combinationPath;
+    String collegePath, combinationPath ,phone;
 
-    TextView viewQ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +75,15 @@ public class SellActivity extends AppCompatActivity {
 
         mButtonChooseImage = findViewById(R.id.button_choose_image);
         mButtonUpload = findViewById(R.id.button_upload);
-
         mImageView = findViewById(R.id.image_view);
-        mProgressBar = findViewById(R.id.progress_bar);
-        mEditTextFileName = findViewById(R.id.edit_text_file_name);
+        mProgressBar = findViewById(R.id.progressBar);
+        mProgressCircle = findViewById(R.id.progress_circle);
+        mBookName = findViewById(R.id.book_name);
+        mAuthorName = findViewById(R.id.author_name);
+        mDescription = findViewById(R.id.description);
+        offView = findViewById(R.id.textOff);
+
+        mProgressCircle.setVisibility(View.INVISIBLE);
 
 
 
@@ -96,10 +105,9 @@ public class SellActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         collegePath = document.getString("college");
                         combinationPath = document.getString("combination");
+                        phone = document.getString("phone");
                         //viewQ.setText(collegePath + "  " + combinationPath);
 
-
-                        // call later after getting the image
 
 
                     }
@@ -123,18 +131,20 @@ public class SellActivity extends AppCompatActivity {
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressCircle.setVisibility(View.VISIBLE);
                 uploadData();
                // uploadFile();
 
             }
         });
 
-
-
-
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SellActivity.this, OperationActivity.class));
+        finish();
+    }
 
     public void openFileChooser(){
         Intent intent = new Intent();
@@ -149,9 +159,10 @@ public class SellActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null ){
+            offView.setVisibility(View.INVISIBLE);
             mImageUri = data.getData();
 
-           //Picasso.with(this).load(mImageUri).into(mImageView);
+
              mImageView.setImageURI(mImageUri);
             //displaying the image (before uploading )
         }
@@ -166,14 +177,14 @@ public class SellActivity extends AppCompatActivity {
     }
 
    public void uploadData(){
-        final String img_url = "null";
+
 
        if (mImageUri != null){
 
            // Here we are naming the file with system time (to make sure that it wont over ride with same name)
            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
 
-           // we can change the loction here too
+           // we can change the location here too
            //StorageReference fileReference = mStorageRef.child("uploads/"+System.currentTimeMillis()+"."+getFileExtension(mImageUri));
 
            fileReference.putFile(mImageUri)
@@ -194,22 +205,19 @@ public class SellActivity extends AppCompatActivity {
 
 
                            Toast.makeText(SellActivity.this,"upload successful ",Toast.LENGTH_LONG).show();
-                           Log.d("test","before passing"+mEditTextFileName.getText().toString());
+                           Log.d("test","before passing"+mBookName.getText().toString());
                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                @Override
                                public void onSuccess(Uri uri) {
-
-
-
                                    //mMap.put("title",);
 
 
                                    String url = uri.toString();
-                                   String title = mEditTextFileName.getText().toString();
+                                   String bookName = mBookName.getText().toString();
+                                   String description = mDescription.getText().toString();
+                                   String authorName = mAuthorName.getText().toString();
 
-                                   sendTextFile(url,title);
-
-
+                                   sendTextFile(url,bookName,authorName,description);
 
 
                                    Log.i("test", "onSuccess: "+ url);
@@ -227,12 +235,14 @@ public class SellActivity extends AppCompatActivity {
                        @Override
                        public void onFailure(@NonNull Exception e) {
                            Toast.makeText(SellActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                           mProgressCircle.setVisibility(View.INVISIBLE);
 
                        }
                    })
                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                        @Override
                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                           Log.d("test","before passing"+taskSnapshot.getBytesTransferred());
                            double progress = (100.0 *taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
 
                            mProgressBar.setProgress((int)progress);
@@ -249,22 +259,50 @@ public class SellActivity extends AppCompatActivity {
 
     }
 
-    public void sendTextFile (String imgUrl,String title ){
+    public void sendTextFile (String imgUrl,String bookName ,String authorName, String description ){
 
 
+        //Random no for the doc ID
+        String docID = String.valueOf(System.currentTimeMillis());
+
+        String userId = mAuth.getCurrentUser().getUid();
         Map<String,String> mMap = new HashMap<>();
         mMap.put("img_url",imgUrl);
-        mMap.put("title",title);
-
+        mMap.put("book",bookName);
+        mMap.put("author",authorName);
+        mMap.put("description",description);
+        mMap.put("userID",userId);
+        mMap.put("phoneNo",phone);
+        mMap.put("docID",docID);
+        //.document(docID)
+        //.document(docID).set(mMap).
+        Log.i("np", "sendTextFile: "+docID);
 
 
         mStore.collection("College").document(collegePath).collection("Combination")
-            .document(combinationPath).collection("BookData").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-           @Override
-           public void onComplete(@NonNull Task<DocumentReference> task) {
+            .document(combinationPath).collection("BookData").document(docID).set(mMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mProgressCircle.setVisibility(View.INVISIBLE);
 
-           }
-       });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(SellActivity.this, ""+e, Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+//        mStore.collection("College").document(collegePath).collection("Combination")
+//            .document(combinationPath).collection("BookData").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//           @Override
+//           public void onComplete(@NonNull Task<DocumentReference> task) {
+//               mProgressCircle.setVisibility(View.INVISIBLE);
+//
+//           }
+//       });
 
     }
 }

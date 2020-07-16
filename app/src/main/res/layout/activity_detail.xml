@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+    <ImageView
+        android:id="@+id/book_img_det"
+        android:layout_width="320dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/book_name_det"
+        android:layout_width="147dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
+        android:text="item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/book_img_det"
+        app:layout_constraintTop_toBottomOf="@+id/book_img_det" />
+
+    <TextView
+        android:id="@+id/author_name_det"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/book_name"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toStartOf="@+id/book_name_det"
+        app:layout_constraintTop_toBottomOf="@+id/book_name_det" />
+
+    <TextView
+        android:id="@+id/book_des_det"
+        android:layout_width="342dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="260dp"
+        android:text="Lamborghini car prices start(GST Included) at Rs 2.99 Cr for the most inexpensive model in its lineup, the Huracan. The most expensive car in Lamborghini's lineup is the Aventador, priced at Rs. 6.25 Cr for its top variant. In total, Lamborghini has 4 models on sale in India. The Lamborghini Urus, Lamborghini Aventador, Lamborghini Huracan are amongst the most popular cars in their respective segments. Upcoming Lamborghini cars in India include the ."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.405"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="112dp"
+        android:onClick="callOperation"
+        android:background="@android:color/darker_gray"
+        android:text="Call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+
+        android:layout_width="151dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="112dp"
+        android:onClick="sendWhatsApp"
+        android:background="@color/colorPrimary"
+        android:text="Whatsapp Msg"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_circle"
+        android:layout_width="125dp"
+        android:layout_height="154dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Button"
+        android:onClick="deleteAction"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,9 +29,5 @@ public class OperationActivity extends AppCompatActivity {
 
     }
 
-    public void logOut(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(OperationActivity.this,MainActivity.class));
-        finish();
-    }
+
 }

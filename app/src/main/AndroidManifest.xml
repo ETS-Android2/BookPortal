@@ -2,15 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bookportal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+
     <application
+        android:name=".GobalData"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BuyActivity"></activity>
-        <activity android:name=".SellActivity" />
+        <activity android:name=".DetailActivity"></activity>
+        <activity
+            android:name=".BuyActivity"
+            android:parentActivityName=".OperationActivity" />
+        <activity
+            android:name=".SellActivity"
+            android:parentActivityName=".OperationActivity" />
         <activity android:name=".OperationActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

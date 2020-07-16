@@ -3,6 +3,7 @@ package com.example.bookportal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -36,5 +37,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,OperationActivity.class));
             finish();
         }
+    }
+
+    public void testO(View view) {
+
+
+
+//        Uri uri = Uri.parse("smsto:" + "+918762623837");
+//        Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hai Good Morning");
+//        sendIntent.setPackage("com.whatsapp");
+//        startActivity(sendIntent);
+
+//        String number= "9483645664";
+//
+//        Uri uri = Uri.parse("smsto:" + number);
+//        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//        i.setPackage("com.whatsapp");
+//        startActivity(Intent.createChooser(i, "GCCCC"));
     }
 }
