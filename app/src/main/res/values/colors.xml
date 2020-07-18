@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#370112</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#03DAC5</color>
     <!--Page Background Color-->
     <color name="colorStartB">#462323</color>
@@ -13,4 +13,9 @@
     <!--Buy Sell Buttons-->
     <color name="colorStartS">#D61053</color>
     <color name="colorEndS">#CAA536</color>
+    <color name="startblue">#4CD6FA</color>
+    <color name="endblue">#1244FF</color>
+    <color name="toolBar">#96AC49</color>
+
+
 </resources>

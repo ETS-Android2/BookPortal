@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -31,12 +32,17 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 public class DetailActivity extends AppCompatActivity {
     private ImageView bookImage;
     private TextView bookName;
     private TextView authorName;
     private TextView bookDes;
-    String number , docID;
+    private Button delBtn;
+    String number, docID;
+    Boolean correctUser = false;
 
 
     private FirebaseStorage mStorage;
@@ -45,22 +51,27 @@ public class DetailActivity extends AppCompatActivity {
     private List<Items> mUploads;
     Items items;
 
+
     private ProgressBar mProgressCircle;
 
-  //
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        bookImage =findViewById(R.id.book_img_det);
-        bookName =findViewById(R.id.book_name_det);
-        authorName =findViewById(R.id.author_name_det);
-        bookDes =findViewById(R.id.book_des_det);
+        bookImage = findViewById(R.id.book_img_det);
+        bookName = findViewById(R.id.book_name_det);
+        authorName = findViewById(R.id.author_name_det);
+        bookDes = findViewById(R.id.book_des_det);
+        delBtn = findViewById(R.id.delBtn);
+
+        delBtn.setVisibility(INVISIBLE);
+
 
         mProgressCircle = findViewById(R.id.progress_circle);
-        mProgressCircle.setVisibility(View.INVISIBLE);
+        mProgressCircle.setVisibility(INVISIBLE);
 
         items = (Items) getIntent().getSerializableExtra("detail");
         //final Object obj = getIntent().getSerializableExtra("detail");
@@ -71,61 +82,81 @@ public class DetailActivity extends AppCompatActivity {
         //Items items = new  Items();
 //
         Glide.with(getApplicationContext()).load(items.getImg_url()).into(bookImage);
-        bookName.setText(items.getBook());
-        authorName.setText(items.getAuthor());
+        bookName.setText("Title : "+items.getBook());
+        authorName.setText("Author : "+items.getAuthor());
         bookDes.setText(items.getDescription());
 
         mStorage = FirebaseStorage.getInstance();
         mFireStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+
+        final String userID = mAuth.getCurrentUser().getUid();
+        final String authConfirm = items.getUserID();
+
+        if (userID.equals(authConfirm)) {
+            delBtn.setVisibility(VISIBLE);
+            correctUser = true;
+        }
+
+
         number = items.getPhoneNo();
         docID = items.getDocID();
 
-       // String n = item;
+        // String n = item;
 
 
-        if(isPermissionGranted()) {}
+        if (isPermissionGranted()) {
+        }
 
     }
 
     public void callOperation(View view) {
 
+
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:"+number));
+        callIntent.setData(Uri.parse("tel:" + number));
         if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         startActivity(callIntent);
 
-
-
     }
 
     public void sendWhatsApp(View view) {
 
+        //String phoneNumberWithCountryCode = "+918762623837";
+
+        if (!number.toString().contains("+91")) {
+            number = "+91" + number;
+        }
 
 
+        String message = "Hey i would like to buy " + items.getBook();
 
-        Uri uri = Uri.parse("smsto:" + number);
-        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-        i.setPackage("com.whatsapp");
-        startActivity(Intent.createChooser(i, "GCCCC"));
+        startActivity(
+                new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(
+                                String.format("https://api.whatsapp.com/send?phone=%s&text=%s", number, message)
+                        )
+                )
+        );
+
+
     }
 
+
     public void deleteAction(View view) {
-        mProgressCircle.setVisibility(View.VISIBLE);
-        final GobalData path = (GobalData)getApplication();
+        mProgressCircle.setVisibility(VISIBLE);
+        final GobalData path = (GobalData) getApplication();
 
         final String collegePath = path.getCollegePath();
         final String combinationPath = path.getCombinationPath();
 
         //Log.i("sh", "getData: +" +f + " " +g);
 
-        final String userID = mAuth.getCurrentUser().getUid();
-        final String authConfirm = items.getUserID();
 
-        if(userID.equals(authConfirm)){
+        if (correctUser) {
 
 
             StorageReference photoRef = mStorage.getReferenceFromUrl(items.getImg_url());
@@ -142,16 +173,18 @@ public class DetailActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    mProgressCircle.setVisibility(View.INVISIBLE);
+                                    mProgressCircle.setVisibility(INVISIBLE);
                                     Toast.makeText(DetailActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(DetailActivity.this, BuyActivity.class));
+                                    finish();
 
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    mProgressCircle.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(path, "failed"+e, Toast.LENGTH_SHORT).show();
+                                    mProgressCircle.setVisibility(INVISIBLE);
+                                    Toast.makeText(path, "failed" + e, Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -160,26 +193,16 @@ public class DetailActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    mProgressCircle.setVisibility(View.INVISIBLE);
-                    Toast.makeText(path, "failed"+e, Toast.LENGTH_SHORT).show();
+                    mProgressCircle.setVisibility(INVISIBLE);
+                    Toast.makeText(path, "failed" + e, Toast.LENGTH_SHORT).show();
 
                 }
             });
 
-        }
-        else{
-            mProgressCircle.setVisibility(View.INVISIBLE);
+        } else {
+            mProgressCircle.setVisibility(INVISIBLE);
             Toast.makeText(this, "Only owner can delete", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-
-
-
-
-
 
 
         String n = String.valueOf(System.currentTimeMillis());
@@ -189,36 +212,27 @@ public class DetailActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-    public  boolean isPermissionGranted() {
+    public boolean isPermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG","Permission is granted");
+                Log.v("TAG", "Permission is granted");
                 return true;
             } else {
 
-                Log.v("TAG","Permission is revoked");
+                Log.v("TAG", "Permission is revoked");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
                 return false;
             }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v("TAG","Permission is granted");
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG", "Permission is granted");
             return true;
         }
     }
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
 
             case 1: {
@@ -237,11 +251,6 @@ public class DetailActivity extends AppCompatActivity {
             // permissions this app might request
         }
     }
-
-
-
-
-
 
 
 }

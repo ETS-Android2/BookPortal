@@ -29,8 +29,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //public class BuyActivity extends AppCompatActivity implements ItemsRecyclerAdapter.OnItemClickListener
-public class BuyActivity extends AppCompatActivity  {
+public class BuyActivity extends AppCompatActivity {
 
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
@@ -42,8 +43,6 @@ public class BuyActivity extends AppCompatActivity  {
     private Toolbar mToolBar;
 
     String collegePath, combinationPath;
-
-
 
 
     @Override
@@ -59,19 +58,17 @@ public class BuyActivity extends AppCompatActivity  {
 
         mProgressCircle = findViewById(R.id.progress_circle);
 
-         final GobalData gobalData =   (GobalData)getApplication();
+        final GobalData gobalData = (GobalData) getApplication();
 
 
         mItemList = new ArrayList<>();
-        itemRecyclerView =findViewById(R.id.buy_recycler);
+        itemRecyclerView = findViewById(R.id.buy_recycler);
         //itemRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        itemRecyclerView.setLayoutManager(new GridLayoutManager(this ,2));
-        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this,mItemList);
+        itemRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this, mItemList);
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
 
         //itemsRecyclerAdapter.SetOnItemClickListener(BuyActivity.this);
-
-
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -98,9 +95,7 @@ public class BuyActivity extends AppCompatActivity  {
     }
 
 
-
-    public void getData(){
-
+    public void getData() {
 
 
         mStore.collection("College").document(collegePath).collection("Combination")
@@ -109,9 +104,9 @@ public class BuyActivity extends AppCompatActivity  {
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for(DocumentSnapshot doc:task.getResult().getDocuments()){
-                        Items items =doc.toObject(Items.class);
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                        Items items = doc.toObject(Items.class);
                         mItemList.add(items);
                     }
                     mProgressCircle.setVisibility(View.INVISIBLE);
@@ -134,15 +129,15 @@ public class BuyActivity extends AppCompatActivity  {
     // for toolBar logout option
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.logout_btn){
+        if (item.getItemId() == R.id.logout_btn) {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(BuyActivity.this,MainActivity.class));
+            startActivity(new Intent(BuyActivity.this, MainActivity.class));
             finish();
 
         }

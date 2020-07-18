@@ -45,7 +45,8 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.title.setText(mItemList.get(position).getBook());
+        holder.title.setText("Title : "+mItemList.get(position).getBook());
+        holder.author.setText("Author : "+mItemList.get(position).getAuthor());
         Glide.with(applicationContext).load(mItemList.get(position).getImg_url()).into(holder.mItemImage);
 
 
@@ -57,7 +58,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 //            }
 //        });
 //
-        holder.mItemImage.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(applicationContext, ""+mItemList.get(position), Toast.LENGTH_SHORT).show();
@@ -79,6 +80,8 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
     //public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener , View.OnCreateContextMenuListener , MenuItem.OnMenuItemClickListener {
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
+        private TextView author;
+
         private ImageView mItemImage;
         private CardView cardView;
 
@@ -86,6 +89,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mItemImage = itemView.findViewById(R.id.item_image);
+            author = itemView.findViewById(R.id.author);
             title = itemView.findViewById(R.id.title);
             cardView = itemView.findViewById(R.id.card_view);
 

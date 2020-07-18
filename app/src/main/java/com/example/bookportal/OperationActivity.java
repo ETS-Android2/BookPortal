@@ -17,14 +17,14 @@ public class OperationActivity extends AppCompatActivity {
     }
 
     public void goToBuy(View view) {
-        startActivity(new Intent(OperationActivity.this,BuyActivity.class));
+        startActivity(new Intent(OperationActivity.this, BuyActivity.class));
         finish();
     }
 
     public void goToSell(View view) {
 
 
-        startActivity(new Intent(OperationActivity.this,SellActivity.class));
+        startActivity(new Intent(OperationActivity.this, SellActivity.class));
         finish();
 
     }

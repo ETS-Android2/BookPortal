@@ -4,124 +4,204 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/global_background"
+    android:background="#FFF"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/signatra"
-        android:text="Sign Up"
-        android:textColor="#FFF"
-        android:textSize="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/reg_name"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/signup_box"
-        android:ems="10"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="UserName"
-        android:inputType="textPersonName"
-        android:paddingLeft="25dp"
-        android:textColor="#FFF"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/reg_mobile"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/signup_box"
-        android:ems="10"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="Mobile No"
-        android:inputType="numberSigned"
-        android:paddingLeft="25dp"
-        android:textColor="#FFF"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/reg_name"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/reg_name"
-        app:layout_constraintTop_toBottomOf="@+id/reg_name" />
+        <ImageView
+            android:id="@+id/logo_img"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:src="@drawable/book"
+            android:transitionName="logo_img" />
+
+        <TextView
+            android:id="@+id/logo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:fontFamily="@font/hiluck"
+            android:text="Hello, Welcome!!"
+            android:textColor="#000"
+            android:textSize="40dp"
+            android:transitionName="logo_Text" />
+
+        <TextView
+            android:id="@+id/second_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/miltonkeynes"
+            android:text="Sign up and Enjoy the service"
+            android:textSize="20dp"
+            android:transitionName="slogan" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="469dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <!-- Usernanme-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:transitionName="uname" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:transitionName="email" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Mobile number-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/mobile"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:transitionName="mobile" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password-->
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:hint="Password"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:transitionName="passwd" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/reg_password"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/signup_box"
-        android:ems="10"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingLeft="25dp"
-        android:textColor="#FFF"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/reg_email"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="@+id/reg_email"
-        app:layout_constraintTop_toBottomOf="@+id/reg_email" />
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="58dp"
+                    android:gravity="center"
+                    android:text="Select your college" />
 
 
-    <Spinner
-        android:id="@+id/collegespinner"
-        android:layout_width="96dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/spinner_box"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="College"
-        android:paddingLeft="25dp"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/reg_password"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/reg_password" />
+                <Spinner
+                    android:id="@+id/collegespinner"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:autofillHints="College"
+                    android:dropDownWidth="wrap_content"
+                    android:spinnerMode="dialog" />
 
-    <Spinner
-        android:id="@+id/combinationSpinner"
-        android:layout_width="95dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/spinner_box"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="Combination"
-        android:paddingLeft="25dp"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/collegespinner"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/collegespinner" />
 
-    <Button
-        android:id="@+id/reg_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/submit_button"
-        android:fontFamily="@font/miltonkeynes"
-        android:text="Sign Up"
-        android:textColor="#FFF"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/combinationSpinner" />
+            </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="58dp"
+                    android:gravity="center"
+                    android:text="Select your combination" />
+
+
+                <Spinner
+                    android:id="@+id/combinationSpinner"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="58dp"
+                    android:autofillHints="Combination"
+                    android:dropDownWidth="wrap_content"
+                    android:spinnerMode="dialog" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/reg_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000"
+                android:fontFamily="@font/luckydreams"
+                android:text="Signup"
+                android:textColor="#FFF"
+                android:transitionName="loginbtn" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"
+                android:background="#00ffffcc"
+                android:elevation="0dp"
+                android:onClick="signIn"
+                android:text="Exsisting User? Login"
+                android:transitionName="signupbtn" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
     <ProgressBar
         android:id="@+id/progress_circle"
         android:layout_width="125dp"
@@ -131,79 +211,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/signatra"
-        android:text="Already have an Account"
-        android:textColor="#c1c1c1"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_btn" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="110dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="12dp"
-        android:background="#00ffffcc"
-        android:onClick="signIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_btn"
-        app:srcCompat="@drawable/login" />
-
-    <EditText
-        android:id="@+id/reg_email"
-        android:layout_width="306dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/signup_box"
-        android:ems="10"
-        android:fontFamily="@font/miltonkeynes"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="25dp"
-        android:textColor="#FFF"
-        android:textColorHint="#c1c1c1"
-        app:layout_constraintEnd_toEndOf="@+id/reg_mobile"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/reg_mobile"
-        app:layout_constraintTop_toBottomOf="@+id/reg_mobile" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="193dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="60dp"
-        android:text="Please select your college"
-        android:textColor="#fff"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_password" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="214dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="24dp"
-        android:text="Please select your combination"
-
-        android:textColor="#fff"
-
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLogin(View view) {
-        Intent intent =new Intent(MainActivity.this,LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
     public void goToSignUp(View view) {
-        Intent intent =new Intent(MainActivity.this,RegisterActivity.class);
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 
@@ -33,27 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // check whether the use exist or not
-        if(mAuth.getCurrentUser()!=null){
-            startActivity(new Intent(MainActivity.this,OperationActivity.class));
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(MainActivity.this, OperationActivity.class));
             finish();
         }
     }
 
-    public void testO(View view) {
-
-
-
-//        Uri uri = Uri.parse("smsto:" + "+918762623837");
-//        Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hai Good Morning");
-//        sendIntent.setPackage("com.whatsapp");
-//        startActivity(sendIntent);
-
-//        String number= "9483645664";
-//
-//        Uri uri = Uri.parse("smsto:" + number);
-//        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-//        i.setPackage("com.whatsapp");
-//        startActivity(Intent.createChooser(i, "GCCCC"));
-    }
 }

@@ -3,8 +3,10 @@ package com.example.bookportal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,25 +43,24 @@ public class LoginActivity extends AppCompatActivity {
         mProgressCircle.setVisibility(View.INVISIBLE);
 
 
-
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-                if(!email.isEmpty()&& !password.isEmpty()){
+                if (!email.isEmpty() && !password.isEmpty()) {
                     mProgressCircle.setVisibility(View.VISIBLE);
-                    mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 mProgressCircle.setVisibility(View.INVISIBLE);
                                 Toast.makeText(LoginActivity.this, "Login Successful !", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this,OperationActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, OperationActivity.class);
                                 startActivity(intent);
-                            }else{
+                            } else {
                                 mProgressCircle.setVisibility(View.INVISIBLE);
-                                Toast.makeText(LoginActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -67,27 +68,22 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             mProgressCircle.setVisibility(View.INVISIBLE);
-                            Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
                     });
 
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, "Please fill empty field", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-
-
     }
 
     public void signUp(View view) {
-        Intent intent =new Intent(LoginActivity.this,RegisterActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
-
-
-
     }
 }

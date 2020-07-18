@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     CollectionReference subjectsRef;
 
-    String college, combination ,name ,email ,password, phone;
+    String college, combination, name, email, password, phone;
 
 
     @Override
@@ -138,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                 email = mEmail.getText().toString();
                 password = mPassword.getText().toString();
                 phone = mPhone.getText().toString();
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()&& !phone.isEmpty()) {
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty()) {
                     mProgressCircle.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -183,13 +184,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                     mProgressCircle.setVisibility(View.INVISIBLE);
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                     finish();
 
-                    Intent intent = new Intent(RegisterActivity.this, OperationActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(RegisterActivity.this, OperationActivity.class);
+//                    startActivity(intent);
 
                 }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterActivity.this, ""+e, Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+
             }
         });
 
