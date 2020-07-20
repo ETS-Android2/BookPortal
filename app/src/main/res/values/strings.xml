@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">BookPortal</string>
+
+    <string name="logoname">College Partner</string>
+    <string name="desc">Here you can find the most popular books</string>
+    <string name="slogan">You can find what you want for ur Education</string>
+    <!--Buttons-->
+    <string name="skip_button">Skip</string>
+    <string name="next_button">Next</string>
+    <string name="get_started">Lets get started</string>
+
+    <!--Dashboard Strings-->
+
+    <!--Catagories-->
+    <string name="books">Books</string>
+    <string name="shop">Shop</string>
+    <string name="questions">Questions</string>
+    <string name="Edu">Education</string>
+    <string name="news">News</string>
+
+    <!--Titles and Description-->
+    <string name="featured_books">Recently Uploaded Books</string>
+    <string name="featured_books_desc">Books that are uploaded are here fo you</string>
+    <string name="most_viewed">Most viewed books</string>
+    <string name="categories">Categories</string>
+    <string name="view_all">View All</string>
+    <string name="search">Search</string>
+
+    <!--Navigation -->
+    <string name="home">Home</string>
+    <string name="navsearch">Search</string>
+    <string name="navquest">Questions</string>
+    <string name="navnews">News</string>
+    <string name="navbooks">Books</string>
+    <string name="navshop">Book Store</string>
+
+    <!--navigation Profile-->
+    <string name="myaccount">My Accounts</string>
+    <string name="mybooks">My Books</string>
+    <string name="mysellbooks">Sell Books</string>
+    <string name="logout">Logout</string>
+
 </resources>

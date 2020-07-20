@@ -8,4 +8,15 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
+
+    <style name="navigationtheme">
+
+        <!--color of text and icon-->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+
+        <!--selected background color-->
+        <item name="colorControlHighlight">@color/colorAccent</item>
+
+    </style>
+
 </resources>

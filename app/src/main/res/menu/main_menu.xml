@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/logout_btn"
-        android:title="Log Out" />
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_icon"
+            android:title="@string/home"
+
+            />
+
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/search_icon"
+            android:title="@string/navsearch" />
+
+        <item
+            android:id="@+id/nav_question"
+            android:icon="@drawable/question_icon"
+            android:title="@string/navquest" />
+        <item
+            android:id="@+id/nav_shop"
+            android:icon="@drawable/shop_icon"
+            android:title="@string/navshop" />
+        <item
+            android:id="@+id/nav_News"
+            android:icon="@drawable/news_icon"
+            android:title="@string/news" />
+        <item
+            android:id="@+id/nav_Books"
+            android:icon="@drawable/book_icon"
+            android:title="@string/books" />
+
+    </group>
+
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_myacc"
+                    android:icon="@drawable/accounts_icon"
+                    android:title="@string/myaccount" />
+
+                <item
+                    android:id="@+id/nav_mybooks"
+                    android:icon="@drawable/mybooks_icon"
+                    android:title="@string/mybooks" />
+
+                <item
+                    android:id="@+id/nav_sell_books"
+                    android:icon="@drawable/mybooks_icon"
+                    android:title="@string/mysellbooks" />
+
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/logout_icon"
+                    android:title="@string/logout" />
+
+
+            </group>
+        </menu>
+
+    </item>
+
+
 </menu>

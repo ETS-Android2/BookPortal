@@ -141,7 +141,8 @@ public class RegisterActivity extends AppCompatActivity {
                 phone = mPhone.getText().toString();
                 if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty()) {
                     mProgressCircle.setVisibility(View.VISIBLE);
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
@@ -151,6 +152,14 @@ public class RegisterActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(RegisterActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                             }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            mProgressCircle.setVisibility(View.INVISIBLE);
+                            Toast.makeText(RegisterActivity.this, ""+e, Toast.LENGTH_SHORT).show();
+
 
                         }
                     });// we can put error listener too
@@ -184,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     mProgressCircle.setVisibility(View.INVISIBLE);
                     FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     finish();
 
 //                    Intent intent = new Intent(RegisterActivity.this, OperationActivity.class);

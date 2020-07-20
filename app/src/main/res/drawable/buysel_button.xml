@@ -12,10 +12,10 @@
         android:width="250dp"
         android:height="35dp" />
 
-    <gradient
-        android:angle="270"
-        android:endColor="@color/colorEndB"
-        android:startColor="@color/colorStart" />
+<!--    <gradient-->
+<!--        android:angle="270"-->
+<!--        android:endColor="@color/colorEndB"-->
+<!--        android:startColor="@color/colorStart" />-->
 
 
 </shape>

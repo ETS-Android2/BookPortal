@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,11 +20,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bookportal.domain.Items;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -49,7 +47,9 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseFirestore mFireStore;
     private FirebaseAuth mAuth;
     private List<Items> mUploads;
+
     Items items;
+//    SearchItems items;
 
 
     private ProgressBar mProgressCircle;
@@ -73,11 +73,13 @@ public class DetailActivity extends AppCompatActivity {
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.setVisibility(INVISIBLE);
 
-        items = (Items) getIntent().getSerializableExtra("detail");
-        //final Object obj = getIntent().getSerializableExtra("detail");
-//        if(obj instanceof Items){
-//            items = (Items) obj;
-//        }
+        //items = (Items) getIntent().getSerializableExtra("detail");
+        final Object obj = getIntent().getSerializableExtra("detail");
+        if(obj instanceof Items){
+
+            items = (Items) obj;
+            //items = (Items) obj;
+        }
 
         //Items items = new  Items();
 //
@@ -108,7 +110,6 @@ public class DetailActivity extends AppCompatActivity {
 
         if (isPermissionGranted()) {
         }
-
     }
 
     public void callOperation(View view) {
@@ -175,7 +176,7 @@ public class DetailActivity extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     mProgressCircle.setVisibility(INVISIBLE);
                                     Toast.makeText(DetailActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(DetailActivity.this, BuyActivity.class));
+                                    startActivity(new Intent(DetailActivity.this, MainActivity.class));
                                     finish();
 
                                 }

@@ -107,9 +107,7 @@ public class SellActivity extends AppCompatActivity {
 
 
                     }
-
                 }
-
             }
         });
 
@@ -118,14 +116,12 @@ public class SellActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openFileChooser();
-
             }
         });
 
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(!btnClicked){
                     btnClicked = true;
                     uploadData();
@@ -140,7 +136,7 @@ public class SellActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(SellActivity.this, OperationActivity.class));
+        startActivity(new Intent(SellActivity.this, MainActivity.class));
         finish();
     }
 
@@ -149,7 +145,6 @@ public class SellActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
-
     }
 
     @Override
@@ -159,7 +154,6 @@ public class SellActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             offView.setVisibility(View.INVISIBLE);
             mImageUri = data.getData();
-
             mImageView.setImageURI(mImageUri);
             //displaying the image (before uploading )
         }
@@ -170,18 +164,15 @@ public class SellActivity extends AppCompatActivity {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mine = MimeTypeMap.getSingleton();
         return mine.getExtensionFromMimeType(cR.getType(uri));
-
     }
 
     public void uploadData() {
-
 
         if (mImageUri != null) {
             mProgressCircle.setVisibility(View.VISIBLE);
 
             // Here we are naming the file with system time (to make sure that it wont over ride with same name)
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-
             // we can change the location here too
             //StorageReference fileReference = mStorageRef.child("uploads/"+System.currentTimeMillis()+"."+getFileExtension(mImageUri));
 
@@ -189,8 +180,6 @@ public class SellActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
                             // this long shit is to get delay in the code
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
@@ -213,7 +202,6 @@ public class SellActivity extends AppCompatActivity {
                                     String bookName = mBookName.getText().toString();
                                     String description = mDescription.getText().toString();
                                     String authorName = mAuthorName.getText().toString();
-
                                     sendTextFile(url, bookName, authorName, description);
 
 

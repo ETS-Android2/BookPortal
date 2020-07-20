@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mProgressCircle = findViewById(R.id.progress_circle);
-
         mProgressCircle.setVisibility(View.INVISIBLE);
 
 
@@ -56,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 mProgressCircle.setVisibility(View.INVISIBLE);
                                 Toast.makeText(LoginActivity.this, "Login Successful !", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, OperationActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             } else {
                                 mProgressCircle.setVisibility(View.INVISIBLE);
@@ -85,5 +84,16 @@ public class LoginActivity extends AppCompatActivity {
     public void signUp(View view) {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // check whether the use exist or not
+        if (mAuth.getCurrentUser() != null) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
 }

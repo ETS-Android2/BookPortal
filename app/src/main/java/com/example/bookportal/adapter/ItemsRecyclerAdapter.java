@@ -30,10 +30,12 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
     Context applicationContext;
     List<Items> mItemList;
+    Boolean search;
 
-    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemList) {
+    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemList,Boolean search) {
         this.applicationContext = applicationContext;
         this.mItemList = mItemList;
+        this.search = search;
     }
 
     @NonNull
@@ -48,6 +50,18 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
         holder.title.setText("Title : "+mItemList.get(position).getBook());
         holder.author.setText("Author : "+mItemList.get(position).getAuthor());
         Glide.with(applicationContext).load(mItemList.get(position).getImg_url()).into(holder.mItemImage);
+        if(!search){
+
+        Glide.with(applicationContext).load(mItemList.get(position).getImg_url()).into(holder.mItemImage);
+
+
+        }
+        else
+        {
+            holder.mItemImage.setVisibility(View.GONE);
+        }
+
+
 
 
 //        holder.title.setOnClickListener(new View.OnClickListener() {

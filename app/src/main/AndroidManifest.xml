@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <application
         android:name=".GobalData"
         android:allowBackup="true"
@@ -14,14 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".MyBookActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".DetailActivity" />
         <activity
-            android:name=".BuyActivity"
+            android:name=".MainActivity"
             android:parentActivityName=".OperationActivity" />
         <activity
             android:name=".SellActivity"
             android:parentActivityName=".OperationActivity" />
-        <activity android:name=".OperationActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreen">
@@ -31,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
