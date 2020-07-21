@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,17 +16,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPassword;
     private EditText mPhone;
+    private EditText mUSN;
     private Button mRegBtn;
 
     private FirebaseAuth mAuth;
@@ -62,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     CollectionReference subjectsRef;
 
-    String college, combination, name, email, password, phone;
+    String college, combination, name, email, password, phone , usn;
 
 
     @Override
@@ -76,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.reg_password);
         mPhone = findViewById(R.id.reg_mobile);
         mRegBtn = findViewById(R.id.reg_btn);
+        mUSN = findViewById(R.id.reg_usn);
 
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.setVisibility(View.INVISIBLE);
@@ -139,7 +133,8 @@ public class RegisterActivity extends AppCompatActivity {
                 email = mEmail.getText().toString();
                 password = mPassword.getText().toString();
                 phone = mPhone.getText().toString();
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty()) {
+                usn = mUSN.getText().toString();
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty()&& !usn.isEmpty()) {
                     mProgressCircle.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -178,30 +173,30 @@ public class RegisterActivity extends AppCompatActivity {
         mMap.put("college", college);
         mMap.put("combination", combination);
         mMap.put("name", name);
+        mMap.put("email", email);
         mMap.put("phone", phone);
+        mMap.put("usn", usn);
         mMap.put("userID", userId);
+
 
         //important stuff
         // mAuth.getCurrentUser().getUid() (the current user id)
-        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
-                .collection("Path").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()) {
+        mStore.collection("User")
+                .document(userId)
+                .collection("Path")
+                .document(userId)
+                .set(mMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(RegisterActivity.this, "Account successfully created", Toast.LENGTH_SHORT).show();
+                        mProgressCircle.setVisibility(View.INVISIBLE);
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        finish();
 
-                    Toast.makeText(RegisterActivity.this, "Account successfully created", Toast.LENGTH_SHORT).show();
-
-                    mProgressCircle.setVisibility(View.INVISIBLE);
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                    finish();
-
-//                    Intent intent = new Intent(RegisterActivity.this, OperationActivity.class);
-//                    startActivity(intent);
-
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(RegisterActivity.this, ""+e, Toast.LENGTH_SHORT).show();
@@ -209,6 +204,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 

@@ -88,7 +88,6 @@
                 android:id="@+id/log_btn"
                 android:background="#000"
                 android:textColor="#FFF"
-
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:transitionName="loginbtn"/>
@@ -110,6 +109,8 @@
     </LinearLayout>
     <ProgressBar
         android:id="@+id/progress_circle"
+        android:indeterminateDrawable="@drawable/progress"
+
         android:layout_width="125dp"
         android:layout_height="154dp"
         android:layout_centerInParent="true"

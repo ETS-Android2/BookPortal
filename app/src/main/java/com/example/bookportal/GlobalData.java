@@ -2,7 +2,7 @@ package com.example.bookportal;
 
 import android.app.Application;
 
-public class GobalData extends Application {
+public class GlobalData extends Application {
 
     String collegePath;
     String combinationPath;

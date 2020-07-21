@@ -46,7 +46,7 @@ public class MyBookActivity extends AppCompatActivity {
 
         mProgressCircle = findViewById(R.id.progress_circle);
 
-        final GobalData gobalData = (GobalData) getApplication();
+        final GlobalData globalData = (GlobalData) getApplication();
 
 
 
@@ -64,11 +64,11 @@ public class MyBookActivity extends AppCompatActivity {
 
     private void getMyBookData() {
         String collegePath , combinationPath , userID;
-        final GobalData gobalData = (GobalData) getApplication();
+        final GlobalData globalData = (GlobalData) getApplication();
 
 
-        collegePath = gobalData.getCollegePath();
-        combinationPath = gobalData.getCombinationPath();
+        collegePath = globalData.getCollegePath();
+        combinationPath = globalData.getCombinationPath();
         userID = mAuth.getCurrentUser().getUid();
 
         mStore.collection("College").document(collegePath).collection("Combination")
@@ -94,7 +94,7 @@ public class MyBookActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(gobalData, ""+e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(globalData, ""+e, Toast.LENGTH_SHORT).show();
                 mProgressCircle.setVisibility(View.INVISIBLE);
 
             }

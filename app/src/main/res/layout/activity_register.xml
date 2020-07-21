@@ -173,6 +173,20 @@
 
 
             </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/use"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="USN">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_usn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:transitionName="mobile" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
@@ -198,7 +212,6 @@
                 android:text="Exsisting User? Login"
                 android:transitionName="signupbtn" />
 
-
         </LinearLayout>
 
     </LinearLayout>
@@ -206,6 +219,8 @@
         android:id="@+id/progress_circle"
         android:layout_width="125dp"
         android:layout_height="154dp"
+        android:indeterminateDrawable="@drawable/progress"
+
         android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

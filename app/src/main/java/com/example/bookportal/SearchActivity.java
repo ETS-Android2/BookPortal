@@ -3,7 +3,6 @@ package com.example.bookportal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -124,11 +123,11 @@ public class SearchActivity extends AppCompatActivity {
     private void searchItem(String text) {
         mItemSearchList.clear();
         searchRecyclerAdapter.notifyDataSetChanged();
-        final GobalData gobalData = (GobalData) getApplication();
+        final GlobalData globalData = (GlobalData) getApplication();
 
 
-        collegePath = gobalData.getCollegePath();
-        combinationPath = gobalData.getCombinationPath();
+        collegePath = globalData.getCollegePath();
+        combinationPath = globalData.getCombinationPath();
 
 
         if(!text.isEmpty()){

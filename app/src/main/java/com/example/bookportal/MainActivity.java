@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -89,12 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mProgressCircle = findViewById(R.id.main_progress_circle);
 
-        final GobalData gobalData = (GobalData) getApplication();
-
-
-
-
-
+        final GlobalData globalData = (GlobalData) getApplication();
 
 
         //navigation
@@ -141,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         collegePath = document.getString("college");
                         combinationPath = document.getString("combination");
-                        gobalData.setCollegePath(collegePath);
-                        gobalData.setCombinationPath(combinationPath);
+                        globalData.setCollegePath(collegePath);
+                        globalData.setCombinationPath(combinationPath);
                         getData();
 
                     }
@@ -156,7 +150,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void getData() {
-        mStore.collection("College").document(collegePath).collection("Combination")
+        mStore.collection("College")
+                .document(collegePath)
+                .collection("Combination")
                 .document(combinationPath)
                 .collection("BookData")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -202,7 +198,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if (item.getItemId() == R.id.nav_sell_books){
             startActivity(new Intent(MainActivity.this, SellActivity.class));
             finish();
+        }else if (item.getItemId() == R.id.nav_myacc){
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            finish();
         }
+
         return true;
 
 

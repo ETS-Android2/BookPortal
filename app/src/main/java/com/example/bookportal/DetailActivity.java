@@ -149,7 +149,7 @@ public class DetailActivity extends AppCompatActivity {
 
     public void deleteAction(View view) {
         mProgressCircle.setVisibility(VISIBLE);
-        final GobalData path = (GobalData) getApplication();
+        final GlobalData path = (GlobalData) getApplication();
 
         final String collegePath = path.getCollegePath();
         final String combinationPath = path.getCombinationPath();

@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.log_btn);
         mAuth = FirebaseAuth.getInstance();
 
+
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.setVisibility(View.INVISIBLE);
 
