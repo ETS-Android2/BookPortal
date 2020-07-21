@@ -93,23 +93,32 @@ public class SellActivity extends AppCompatActivity {
         //userRef = mStore.collection("User");
 
 
-        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
-                .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
 
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        collegePath = document.getString("college");
-                        combinationPath = document.getString("combination");
-                        phone = document.getString("phone");
-                        //viewQ.setText(collegePath + "  " + combinationPath);
+        final GobalData gobalData = (GobalData) getApplication();
 
 
-                    }
-                }
-            }
-        });
+        collegePath = gobalData.getCollegePath();
+        combinationPath = gobalData.getCombinationPath();
+
+
+//        userID = mAuth.getCurrentUser().getUid();
+//        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
+//                .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                if (task.isSuccessful()) {
+//
+//                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                        collegePath = document.getString("college");
+//                        combinationPath = document.getString("combination");
+//                        phone = document.getString("phone");
+//                        //viewQ.setText(collegePath + "  " + combinationPath);
+//
+//
+//                    }
+//                }
+//            }
+//        });
 
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -189,8 +198,6 @@ public class SellActivity extends AppCompatActivity {
                                 }
                             }, 2000);
 
-
-                            Toast.makeText(SellActivity.this, "upload successful ", Toast.LENGTH_LONG).show();
                             Log.d("test", "before passing" + mBookName.getText().toString());
                             fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
@@ -206,9 +213,7 @@ public class SellActivity extends AppCompatActivity {
 
 
                                     Log.i("test", "onSuccess: " + url);
-//                                   Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),url);
-//                                   String uploadID = mDatabaseRef.push().getKey();
-//                                   mDatabaseRef.child(uploadID).setValue(upload);
+
                                 }
                             });
 
@@ -267,6 +272,8 @@ public class SellActivity extends AppCompatActivity {
                 mProgressCircle.setVisibility(View.INVISIBLE);
                 btnClicked = false;
                 Toast.makeText(SellActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SellActivity.this, MainActivity.class));
+                finish();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -276,6 +283,8 @@ public class SellActivity extends AppCompatActivity {
 
                 Toast.makeText(SellActivity.this, "" + e, Toast.LENGTH_SHORT).show();
                 mProgressCircle.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(SellActivity.this, MainActivity.class));
+                finish();
 
             }
         });

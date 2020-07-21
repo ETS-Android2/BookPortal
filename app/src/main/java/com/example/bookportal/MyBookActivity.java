@@ -50,19 +50,16 @@ public class MyBookActivity extends AppCompatActivity {
 
 
 
-
-
-
         mMyBookList = new ArrayList<>();
         myBookRecyclerView = findViewById(R.id.my_book_recycler);
         //itemRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         myBookRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         myBookRecyclerAdapter = new ItemsRecyclerAdapter(this, mMyBookList,false);
         myBookRecyclerView.setAdapter(myBookRecyclerAdapter);
-        
-        
+
+
         getMyBookData();
-        
+
     }
 
     private void getMyBookData() {
