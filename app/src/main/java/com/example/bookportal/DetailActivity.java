@@ -159,11 +159,10 @@ public class DetailActivity extends AppCompatActivity {
 
         if (correctUser) {
 
-
             StorageReference photoRef = mStorage.getReferenceFromUrl(items.getImg_url());
 
 
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            photoRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
 

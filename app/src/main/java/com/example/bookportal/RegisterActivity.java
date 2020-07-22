@@ -97,7 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 combination = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), combination + " +", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -142,7 +141,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         userDataUpdate();
-
 
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -206,8 +204,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
     public void getSpinnerData() {
@@ -225,8 +221,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public void signIn(View view) {

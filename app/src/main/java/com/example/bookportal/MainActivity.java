@@ -72,9 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,10 +119,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-
-
-
-
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
                 .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -146,8 +139,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
     }
-
-
 
     public void getData() {
         mStore.collection("College")
@@ -204,8 +195,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return true;
-
-
     }
 
     private void navigationDrawer() {
