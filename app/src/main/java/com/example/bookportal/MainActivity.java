@@ -192,7 +192,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if (item.getItemId() == R.id.nav_myacc){
             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             finish();
+        }else if (item.getItemId() == R.id.nav_shop){
+            startActivity(new Intent(MainActivity.this, BookStoreActivity.class));
+            finish();
         }
+
 
         return true;
     }

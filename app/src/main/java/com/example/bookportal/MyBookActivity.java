@@ -3,6 +3,7 @@ package com.example.bookportal;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -53,10 +54,9 @@ public class MyBookActivity extends AppCompatActivity {
         mMyBookList = new ArrayList<>();
         myBookRecyclerView = findViewById(R.id.my_book_recycler);
         //itemRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        myBookRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        myBookRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         myBookRecyclerAdapter = new ItemsRecyclerAdapter(this, mMyBookList,false);
         myBookRecyclerView.setAdapter(myBookRecyclerAdapter);
-
 
         getMyBookData();
 

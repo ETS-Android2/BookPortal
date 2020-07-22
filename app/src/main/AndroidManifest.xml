@@ -13,14 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".BookStoreActivity"></activity>
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".MyBookActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".DetailActivity" />
-        <activity
-            android:name=".MainActivity"/>
-        <activity
-            android:name=".SellActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SellActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreen">

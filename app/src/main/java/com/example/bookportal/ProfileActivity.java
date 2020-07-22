@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText mUserEmail;
     private EditText mUserPhone;
     private EditText mUserUSN;
+    private TextView personName , personEmail;
 
 
     boolean btnClicked = false;
@@ -48,14 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
         mUserEmail = findViewById(R.id.profile_useremail);
         mUserPhone = findViewById(R.id.profile_phone);
         mUserUSN = findViewById(R.id.profile_usn);
+        personName =findViewById(R.id.person_name);
+        personEmail =findViewById(R.id.person_email);
 
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.setVisibility(View.INVISIBLE);
-
-
-
-
-
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -69,6 +68,8 @@ public class ProfileActivity extends AppCompatActivity {
                         mUserEmail.setText(document.getString("email"));
                         mUserUSN.setText(document.getString("usn"));
                         mUserPhone.setText(document.getString("phone"));
+                        personName.setText(document.getString("name"));
+                        personEmail.setText(document.getString("email"));
 
 
 //                        getData();
@@ -85,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateData(View view) {
-        String userName, userEmail , userPhone ,userId , usn;
+        final String userName, userEmail , userPhone ,userId , usn;
 
         userName = mUserName.getText().toString();
         userEmail = mUserEmail.getText().toString();
@@ -110,6 +111,9 @@ public class ProfileActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+
+                            personName.setText(userName);
+                            personEmail.setText(userEmail);
 
                             btnClicked = false;
                             mProgressCircle.setVisibility(View.INVISIBLE);

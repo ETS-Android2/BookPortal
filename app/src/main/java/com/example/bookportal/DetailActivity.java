@@ -165,7 +165,6 @@ public class DetailActivity extends AppCompatActivity {
             photoRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-
                     mFireStore.collection("College").document(collegePath).collection("Combination")
                             .document(combinationPath)
                             .collection("BookData")
