@@ -7,6 +7,16 @@ public class GlobalData extends Application {
     String collegePath;
     String combinationPath;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    String phone;
+
 
     public String getCollegePath() {
         return collegePath;

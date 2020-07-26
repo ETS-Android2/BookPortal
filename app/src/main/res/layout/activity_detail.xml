@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/global_background"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backgroundcard"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <ProgressBar
-        android:id="@+id/progress_circle"
-        android:layout_width="125dp"
-        android:layout_height="154dp"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
+        android:background="@drawable/backgroundcard"
+        android:orientation="vertical">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/home_toolbaff"
             android:layout_width="match_parent"
@@ -37,113 +22,299 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
-        <LinearLayout
-            android:layout_marginTop="100dp"
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-
-            <ImageView
-                android:layout_gravity="center"
-
-                android:id="@+id/book_img_det"
+            <TextView
                 android:layout_width="wrap_content"
-                android:scaleType="fitXY"
-                android:layout_height="179dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:elevation="15dp"
+                android:fontFamily="@font/miltonkeynes"
+                android:shadowColor="@color/black"
+                android:text="Book Details"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="35dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ozaydin.serkan.com.image_zoom_view.ImageViewZoom
+                android:layout_margin="30dp"
+                android:contentDescription="@string/common_google_play_services_enable_text"
+                android:id="@+id/book_img_det"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="#9A998F"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                android:src="@drawable/firstpage" />
+
+        </RelativeLayout>
 
 
-            <TextView
-                android:layout_marginTop="20dp"
-                android:id="@+id/book_name_det"
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:text="item" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:id="@+id/author_name_det"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#fff" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp">
 
+                    <TextView
+                        android:id="@+id/bookdetails_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:text="Title : "
+                        android:textColor="@color/black"
+                        android:textSize="25dp" />
 
+                    <TextView
+                        android:id="@+id/book_name_det"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@+id/bookdetails_title"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:includeFontPadding="false"
+                        android:paddingLeft="5dp"
+                        android:text="Data Structure and Algorithms"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/book_des_det"
-            android:background="#B7ADC6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-
-
-            android:text="Lamborghini car prices start(GST Included) at Rs 2.99 Cr for the most inexpensive model in its lineup, the Huracan. The most expensive car in Lamborghini's lineup is the Aventador, priced at Rs. 6.25 Cr for its top variant. In total, Lamborghini has 4 models on sale in India. The Lamborghini Urus, Lamborghini Aventador, Lamborghini Huracan are amongst the most popular cars in their respective segments. Upcoming Lamborghini cars in India include the ."/>
-
-
-
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
+                </RelativeLayout>
 
 
-            <Button
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:onClick="callOperation"
-                android:background="@android:color/darker_gray"
-                android:text="Call" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp">
 
-            <Button
+                    <TextView
+                        android:id="@+id/bookdetails_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:text="Author:"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:onClick="sendWhatsApp"
-                android:background="@color/colorPrimary"
-                android:text="Whatsapp Msg"
-                android:textColor="@android:color/white"
-               />
+                    <TextView
+                        android:id="@+id/author_name_det"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@+id/bookdetails_author"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:includeFontPadding="false"
+                        android:paddingLeft="5dp"
+                        android:text="R S Agarwal"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp">
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="?android:attr/listDivider" />
+
+                </RelativeLayout>
 
 
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/bookdetails_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:text="Description:"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
-        <Button
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
+                    <TextView
+                        android:id="@+id/book_des_det"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_toRightOf="@+id/bookdetails_description"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:includeFontPadding="false"
+                        android:paddingLeft="5dp"
+                        android:text="the book containing all the concepts of data structure and algorithm "
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
 
-            android:id="@+id/delBtn"
-            android:layout_width="245dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+                </RelativeLayout>
 
-            android:onClick="deleteAction"
-            android:text="Delete Button" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp">
 
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="?android:attr/listDivider" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+
+                    <TextView
+                        android:id="@+id/details_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/miltonkeynes"
+                        android:shadowColor="#c1c1c1"
+                        android:text="For Details Contact "
+                        android:textColor="@color/colorend"
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:id="@+id/owner_name_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_card"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="11dp"
+                        android:text="Owner Name: "
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/owner_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details_card"
+                        android:layout_toRightOf="@+id/owner_name_title"
+                        android:fontFamily="@font/amaranth_italic"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:text="Mithun Babbira"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp">
+
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="?android:attr/listDivider" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="50dp"
+                    android:layout_gravity="bottom"
+                    android:paddingRight="50dp">
+
+                    <Button
+                        android:id="@+id/call_btn"
+                        android:onClick="callOperation"
+                        android:text="call"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/buyer_action_btn"
+                        android:textColor="#FFF" />
+
+                    <Button
+                        android:id="@+id/whats_app_btn"
+                        android:onClick="sendWhatsApp"
+                        android:text="Whats app msg"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/buyer_action_btn"
+                        android:textColor="#FFF" />
+
+
+                </RelativeLayout>
+
+
+                <Button
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+
+                    android:id="@+id/delBtn"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:onClick="deleteAction"
+                    android:text="Delete Button" />
+            </LinearLayout>
+
+
+        </ScrollView>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_circle_detail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

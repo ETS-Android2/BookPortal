@@ -38,8 +38,8 @@
     </LinearLayout>
     <ProgressBar
         android:id="@+id/progress_circle"
-        android:layout_width="203dp"
-        android:layout_height="154dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:indeterminateDrawable="@drawable/progress"
         android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"

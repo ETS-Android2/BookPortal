@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
+    private LinearLayout pdfActivity;
 
     private List<Items> mItemList;
     private RecyclerView itemRecyclerView;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ProgressBar mProgressCircle;
     private Toolbar mToolBar;
-    String collegePath, combinationPath;
+    String collegePath, combinationPath , phone;
 
 
     //SEARCH
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(mToolBar);
+        pdfActivity = findViewById(R.id.pdfActivity);
 
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
@@ -117,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
 
 
+        pdfActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,PdfActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -128,8 +138,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         collegePath = document.getString("college");
                         combinationPath = document.getString("combination");
+                        phone = document.getString("phone");
                         globalData.setCollegePath(collegePath);
                         globalData.setCombinationPath(combinationPath);
+                        globalData.setPhone(phone);
                         getData();
 
                     }
@@ -252,14 +264,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             super.onBackPressed();
     }
-
-
-
-
-
-
-
-
 
 
 

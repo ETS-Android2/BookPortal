@@ -94,26 +94,27 @@ public class SellActivity extends AppCompatActivity {
 
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
+        phone = globalData.getPhone();
 
 
-//        userID = mAuth.getCurrentUser().getUid();
-//        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
-//                .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()) {
-//
-//                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                        collegePath = document.getString("college");
-//                        combinationPath = document.getString("combination");
-//                        phone = document.getString("phone");
-//                        //viewQ.setText(collegePath + "  " + combinationPath);
-//
-//
-//                    }
-//                }
-//            }
-//        });
+////        userID = mAuth.getCurrentUser().getUid();
+////        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
+////                .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+////            @Override
+////            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+////                if (task.isSuccessful()) {
+////
+////                    for (QueryDocumentSnapshot document : task.getResult()) {
+////                        collegePath = document.getString("college");
+////                        combinationPath = document.getString("combination");
+////                        phone = document.getString("phone");
+////                        //viewQ.setText(collegePath + "  " + combinationPath);
+////
+////
+////                    }
+////                }
+////            }
+////        });
 
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +138,10 @@ public class SellActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -290,14 +295,14 @@ public class SellActivity extends AppCompatActivity {
             }
         });
 
-//        mStore.collection("College").document(collegePath).collection("Combination")
-//            .document(combinationPath).collection("BookData").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//           @Override
-//           public void onComplete(@NonNull Task<DocumentReference> task) {
-//               mProgressCircle.setVisibility(View.INVISIBLE);
-//
-//           }
-//       });
+////        mStore.collection("College").document(collegePath).collection("Combination")
+////            .document(combinationPath).collection("BookData").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+////           @Override
+////           public void onComplete(@NonNull Task<DocumentReference> task) {
+////               mProgressCircle.setVisibility(View.INVISIBLE);
+////
+////           }
+////       });
 
     }
 }

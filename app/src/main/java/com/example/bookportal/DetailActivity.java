@@ -70,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         delBtn.setVisibility(INVISIBLE);
 
 
-        mProgressCircle = findViewById(R.id.progress_circle);
+        mProgressCircle = findViewById(R.id.progress_circle_detail);
         mProgressCircle.setVisibility(INVISIBLE);
 
         //items = (Items) getIntent().getSerializableExtra("detail");
@@ -150,7 +150,6 @@ public class DetailActivity extends AppCompatActivity {
     public void deleteAction(View view) {
         mProgressCircle.setVisibility(VISIBLE);
         final GlobalData path = (GlobalData) getApplication();
-
         final String collegePath = path.getCollegePath();
         final String combinationPath = path.getCombinationPath();
 
@@ -158,10 +157,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
         if (correctUser) {
-
             StorageReference photoRef = mStorage.getReferenceFromUrl(items.getImg_url());
-
-
             photoRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

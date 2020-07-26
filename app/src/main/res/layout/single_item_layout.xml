@@ -24,34 +24,34 @@
 
             android:id="@+id/item_image"
             android:layout_width="100dp"
-            android:layout_height="2100dp"
-            android:scaleType="centerCrop"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/bw" />
+
 
         <TextView
             android:id="@+id/title"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="50dp"
             android:layout_toRightOf="@+id/item_image"
             android:fontFamily="@font/baloo"
             android:text="DSA"
+            android:textColor="@color/black"
             android:textSize="20dp" />
-
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
             android:layout_below="@+id/title"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/item_image"
             android:padding="10dp"
-            android:textSize="18dp"
-            android:text="hjdakjshdkjsadhfkjashlkdfjhlskdjhsgfdghsdkfjghsdkljfggsjkldghjksdfhgkljsdfsd" />
-
+            android:text="hjdakjshdkjsadhfkjashlkdfjhlskdjhsgfdghsdkfjghsdkljfggsjkldghjksdfhgkljsdfsd"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
 
     </RelativeLayout>

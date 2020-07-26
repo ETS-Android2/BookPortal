@@ -42,5 +42,8 @@
     <color name="endblue">#1244FF</color>
     <color name="toolBar">#96AC49</color>
 
+    <color name="btnstart">#8256CF</color>
+    <color name="btnend">#3E54CD</color>
+
 
 </resources>

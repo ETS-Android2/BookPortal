@@ -12,7 +12,8 @@
     <!--Dashboard Strings-->
 
     <!--Catagories-->
-    <string name="books">Books</string>
+    <string name="PDF">PDF</string>
+    <string name="books">books</string>
     <string name="shop">Shop</string>
     <string name="questions">Questions</string>
     <string name="Edu">Education</string>
