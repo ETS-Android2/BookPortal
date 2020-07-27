@@ -195,6 +195,15 @@ public class PdfActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PdfActivity.this, MainActivity.class));
+        finish();
+    }
+
+
+
+
     private void getSpinnerSubData(String sem) {
 
 
