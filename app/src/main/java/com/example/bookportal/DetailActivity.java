@@ -38,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView bookName;
     private TextView authorName;
     private TextView bookDes;
+    private TextView ownerName;
     private Button delBtn;
     String number, docID;
     Boolean correctUser = false;
@@ -66,6 +67,7 @@ public class DetailActivity extends AppCompatActivity {
         authorName = findViewById(R.id.author_name_det);
         bookDes = findViewById(R.id.book_des_det);
         delBtn = findViewById(R.id.delBtn);
+        ownerName =findViewById(R.id.owner_name);
 
         delBtn.setVisibility(INVISIBLE);
 
@@ -84,9 +86,10 @@ public class DetailActivity extends AppCompatActivity {
         //Items items = new  Items();
 //
         Glide.with(getApplicationContext()).load(items.getImg_url()).into(bookImage);
-        bookName.setText("Title : "+items.getBook());
-        authorName.setText("Author : "+items.getAuthor());
+        bookName.setText(items.getBook());
+        authorName.setText(items.getAuthor());
         bookDes.setText(items.getDescription());
+        ownerName.setText(items.getOwerName());
 
         mStorage = FirebaseStorage.getInstance();
         mFireStore = FirebaseFirestore.getInstance();

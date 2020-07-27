@@ -56,6 +56,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     ArrayAdapter<String> semAdapter, subAdapter;
     ArrayList<String> semList, subList;
+    private  String sem , sub;
 
 
 
@@ -123,10 +124,31 @@ public class PdfUploadActivity extends AppCompatActivity {
         semSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               String sem = parent.getItemAtPosition(position).toString();
+                sem = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), sem, Toast.LENGTH_SHORT).show();
 
                 getSpinnerSubData(sem);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+        subjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sub = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
+
+
 
 
             }
@@ -271,11 +293,17 @@ public class PdfUploadActivity extends AppCompatActivity {
         mMap.put("userID", userId);
 
 
+        Log.i("TAG", "uploadTextdata: " +sem + sub);
+
         mStore.collection("College")
                 .document(collegePath)
                 .collection("Combination")
                 .document(combinationPath)
                 .collection("PDFData")
+                .document(sem)
+                .collection("subjects")
+                .document(sub)
+                .collection("pdfData")
                 .document(docID)
                 .set(mMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -308,7 +336,6 @@ public class PdfUploadActivity extends AppCompatActivity {
         btnClicked = true;
 
         progressBarPDF.setVisibility(View.VISIBLE);
-
 
         final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
 

@@ -59,7 +59,7 @@ public class SellActivity extends AppCompatActivity {
     Boolean btnClicked = false;
 
 
-    String collegePath, combinationPath, phone;
+    String collegePath, combinationPath, phone , owerName;
 
 
     @Override
@@ -94,6 +94,7 @@ public class SellActivity extends AppCompatActivity {
 
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
+        owerName = globalData.getName();
         phone = globalData.getPhone();
 
 
@@ -262,6 +263,7 @@ public class SellActivity extends AppCompatActivity {
         mMap.put("userID", userId);
         mMap.put("phoneNo", phone);
         mMap.put("docID", docID);
+        mMap.put("owerName", owerName);
         Log.i("np", "sendTextFile: " + docID);
 
 

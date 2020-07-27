@@ -6,6 +6,16 @@ public class GlobalData extends Application {
 
     String collegePath;
     String combinationPath;
+    String phone;
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPhone() {
         return phone;
@@ -15,7 +25,7 @@ public class GlobalData extends Application {
         this.phone = phone;
     }
 
-    String phone;
+
 
 
     public String getCollegePath() {

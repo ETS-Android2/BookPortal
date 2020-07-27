@@ -30,6 +30,8 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
     List<Items> mItemList;
     Boolean search;
 
+
+
     public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemList,Boolean search) {
         this.applicationContext = applicationContext;
         this.mItemList = mItemList;

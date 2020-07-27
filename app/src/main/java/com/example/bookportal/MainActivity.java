@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ProgressBar mProgressCircle;
     private Toolbar mToolBar;
-    String collegePath, combinationPath , phone;
+    String collegePath, combinationPath , phone , name;
 
 
     //SEARCH
@@ -139,9 +139,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         collegePath = document.getString("college");
                         combinationPath = document.getString("combination");
                         phone = document.getString("phone");
+                        name = document.getString("name");
                         globalData.setCollegePath(collegePath);
                         globalData.setCombinationPath(combinationPath);
                         globalData.setPhone(phone);
+                        globalData.setName(name);
                         getData();
 
                     }

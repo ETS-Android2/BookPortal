@@ -11,6 +11,16 @@ public class Items implements Serializable {
     String phoneNo;
     String docID;
 
+    public String getOwerName() {
+        return owerName;
+    }
+
+    public void setOwerName(String owerName) {
+        this.owerName = owerName;
+    }
+
+    String owerName;
+
 
 
 
