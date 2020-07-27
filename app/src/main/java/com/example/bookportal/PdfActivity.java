@@ -158,6 +158,7 @@ public class PdfActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PdfActivity.this,PdfUploadActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
