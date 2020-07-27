@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PdfUploadActivity"></activity>
+        <activity android:name=".DeletePDFActivity"></activity>
+        <activity android:name=".PdfUploadActivity" />
         <activity android:name=".PdfActivity" />
         <activity android:name=".BookStoreActivity" />
         <activity android:name=".ProfileActivity" />

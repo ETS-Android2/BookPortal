@@ -2,12 +2,45 @@ package com.example.bookportal;
 
 import android.app.Application;
 
+import java.io.Serializable;
+
 public class GlobalData extends Application {
 
     String collegePath;
     String combinationPath;
     String phone;
     String name;
+    String sem;
+
+    public String getSem() {
+        return sem;
+    }
+
+    public void setSem(String sem) {
+        this.sem = sem;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    String subject;
+
+    String userID;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+
 
     public String getName() {
         return name;

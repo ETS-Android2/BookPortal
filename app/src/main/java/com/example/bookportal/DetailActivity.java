@@ -75,13 +75,13 @@ public class DetailActivity extends AppCompatActivity {
         mProgressCircle = findViewById(R.id.progress_circle_detail);
         mProgressCircle.setVisibility(INVISIBLE);
 
-        //items = (Items) getIntent().getSerializableExtra("detail");
-        final Object obj = getIntent().getSerializableExtra("detail");
-        if(obj instanceof Items){
-
-            items = (Items) obj;
-            //items = (Items) obj;
-        }
+        items = (Items) getIntent().getSerializableExtra("detail");
+//        final Object obj = getIntent().getSerializableExtra("detail");
+//        if(obj instanceof Items){
+//
+//            items = (Items) obj;
+//            //items = (Items) obj;
+//        }
 
         //Items items = new  Items();
 //

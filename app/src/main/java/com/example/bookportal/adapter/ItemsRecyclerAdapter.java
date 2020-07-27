@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookportal.DetailActivity;
+import com.example.bookportal.GlobalData;
 import com.example.bookportal.R;
 import com.example.bookportal.domain.Items;
 
@@ -32,7 +33,7 @@ public class ItemsRecyclerAdapter extends RecyclerView.Adapter<ItemsRecyclerAdap
 
 
 
-    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemList,Boolean search) {
+    public ItemsRecyclerAdapter(Context applicationContext, List<Items> mItemList, Boolean search) {
         this.applicationContext = applicationContext;
         this.mItemList = mItemList;
         this.search = search;

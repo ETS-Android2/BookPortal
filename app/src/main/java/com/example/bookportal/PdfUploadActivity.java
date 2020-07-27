@@ -330,6 +330,12 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PdfUploadActivity.this, PdfActivity.class));
+        finish();
+    }
+
 
     public void UploadPdf(View view) {
 

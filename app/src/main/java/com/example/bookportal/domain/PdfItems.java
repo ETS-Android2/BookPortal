@@ -1,6 +1,8 @@
 package com.example.bookportal.domain;
 
-public class PdfItems {
+import java.io.Serializable;
+
+public class PdfItems implements Serializable {
 
     String pdf_url;
     String pdf_name;

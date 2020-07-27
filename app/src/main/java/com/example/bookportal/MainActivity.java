@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final GlobalData globalData = (GlobalData) getApplication();
 
+        globalData.setUserID(mAuth.getCurrentUser().getUid());
+
 
         //navigation
         contentView = findViewById(R.id.content);

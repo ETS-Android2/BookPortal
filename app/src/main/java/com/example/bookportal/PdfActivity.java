@@ -64,12 +64,15 @@ public class PdfActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
+//        mPDFList.clear();
+
 
         goToSell = findViewById(R.id.goToSellActivity);
 
         final GlobalData globalData = (GlobalData) getApplication();
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
+        String userID = globalData.getUserID();
         phone = globalData.getPhone();
 
 
@@ -108,12 +111,14 @@ public class PdfActivity extends AppCompatActivity {
 
 
           getSpinnerData();
+        Log.i("TAG", "onComplete: FSF");
 
 
         semSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sem = parent.getItemAtPosition(position).toString();
+                globalData.setSem(sem);
                 Toast.makeText(parent.getContext(), sem, Toast.LENGTH_SHORT).show();
 
                 getSpinnerSubData(sem);
@@ -132,6 +137,8 @@ public class PdfActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sub = parent.getItemAtPosition(position).toString();
+                globalData.setSubject(sub);
+
                 Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
 
                 getRecyclerData(sub,sem);
@@ -157,8 +164,6 @@ public class PdfActivity extends AppCompatActivity {
 
     private void getRecyclerData(String sub, String sem) {
 
-
-
         mStore.collection("College")
                 .document(collegePath)
                 .collection("Combination")
@@ -173,6 +178,7 @@ public class PdfActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 if (task.isSuccessful()) {
+                    mPDFList.clear();
                     for (DocumentSnapshot doc : task.getResult().getDocuments()) {
                         PdfItems items = doc.toObject(PdfItems.class);
                         mPDFList.add(items);
@@ -184,8 +190,6 @@ public class PdfActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }
@@ -229,6 +233,7 @@ public class PdfActivity extends AppCompatActivity {
                     semSelectList.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String subject = document.getString("sem");
+                        Log.i("TAG", "onComplete: "+subject);
                         semSelectList.add(subject);
                     }
                     semSelectAdapter.notifyDataSetChanged();
