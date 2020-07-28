@@ -107,7 +107,6 @@ public class PdfActivity extends AppCompatActivity {
                 .document(combinationPath)
                 .collection("PDFData");
 
-
           getSpinnerData();
         Log.i("TAG", "onComplete: FSF");
 
@@ -118,8 +117,13 @@ public class PdfActivity extends AppCompatActivity {
                 sem = parent.getItemAtPosition(position).toString();
                 globalData.setSem(sem);
                 Toast.makeText(parent.getContext(), sem, Toast.LENGTH_SHORT).show();
-
                 getSpinnerSubData(sem);
+
+//                mPDFList.clear();
+//
+//                pdfRecyclerAdapter.notifyDataSetChanged();
+
+
 
             }
 
@@ -136,10 +140,11 @@ public class PdfActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sub = parent.getItemAtPosition(position).toString();
                 globalData.setSubject(sub);
-
+                mPDFList.clear();
                 Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
-
                 getRecyclerData(sub,sem);
+                pdfRecyclerAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -149,12 +154,10 @@ public class PdfActivity extends AppCompatActivity {
         });
         
 
-
-
         goToSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PdfActivity.this,PdfOperationActivity.class);
+                Intent intent = new Intent(PdfActivity.this,PdfUploadActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -162,6 +165,7 @@ public class PdfActivity extends AppCompatActivity {
     }
 
     private void getRecyclerData(String sub, String sem) {
+
 
         mStore.collection("College")
                 .document(collegePath)
@@ -181,6 +185,7 @@ public class PdfActivity extends AppCompatActivity {
                     for (DocumentSnapshot doc : task.getResult().getDocuments()) {
                         PdfItems items = doc.toObject(PdfItems.class);
                         mPDFList.add(items);
+
                     }
                     //mProgressCircle.setVisibility(View.INVISIBLE);
                     pdfRecyclerAdapter.notifyDataSetChanged();
@@ -202,7 +207,7 @@ public class PdfActivity extends AppCompatActivity {
 
 
 
-    private void getSpinnerSubData(String sem) {
+    private void getSpinnerSubData(final String sem) {
 
 
         subjectsRef.document(sem).collection("subjects")
@@ -217,6 +222,7 @@ public class PdfActivity extends AppCompatActivity {
                         subSelectList.add(subject);
                     }
                     subSelectAdapter.notifyDataSetChanged();
+
                 }
 
             }

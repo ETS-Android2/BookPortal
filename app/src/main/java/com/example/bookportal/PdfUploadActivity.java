@@ -367,4 +367,9 @@ public class PdfUploadActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void goBAK(View view) {
+        startActivity(new Intent(PdfUploadActivity.this, PdfOperationActivity.class));
+        finish();
+    }
 }

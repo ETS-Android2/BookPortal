@@ -14,15 +14,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/backgroundcard"
         android:orientation="vertical">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/home_toolbaff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#656255"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"

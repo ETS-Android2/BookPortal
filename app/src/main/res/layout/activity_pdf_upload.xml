@@ -23,6 +23,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:onClick="goBAK"
                 android:id="@+id/backbtn"
                 android:layout_centerVertical="true"
                 android:src="@drawable/back_icon" />
@@ -41,6 +42,10 @@
 
 
         <LinearLayout
+            android:background="@color/banner_background_light"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -53,6 +58,9 @@
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
                 app:boxCornerRadiusBottomEnd="5dp"
+                app:hintTextColor="@color/card"
+                android:textColorLink="@color/card"
+
                 app:boxCornerRadiusTopStart="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,15 +68,12 @@
                     android:id="@+id/pdfName"
                     android:layout_height="wrap_content"
                     android:hint="Book Title"
+                    android:textColorLink="@color/card"
+                    android:textColorHighlight="@color/card"
                     android:textColorHint="#c1c1c1"
                     android:textColor="@color/lightWhite" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
 
 
             <LinearLayout
@@ -79,6 +84,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="@color/White"
 
                     android:layout_height="match_parent"
 
@@ -108,6 +114,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="@color/White"
 
                     android:layout_height="match_parent"
                     android:layout_marginLeft="58dp"
@@ -154,6 +161,7 @@
                     android:elevation="15dp"/>
 
                 <Button
+                    android:onClick="UploadPdf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

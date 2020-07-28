@@ -23,68 +23,86 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-
-                android:layout_height="match_parent"
-
-                android:layout_marginLeft="58dp"
-                android:gravity="center"
-                android:text="Select your SEM" />
 
 
-            <Spinner
-                android:id="@+id/semSelectSpinner"
-                style="@style/Widget.AppCompat.Spinner.DropDown"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:background="@color/banner_background_light"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
-                android:autofillHints="College"
-                android:dropDownWidth="wrap_content"
-                android:spinnerMode="dialog" />
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/White"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="58dp"
+                        android:gravity="center"
+                        android:text="Select your SEM" />
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-
-                android:layout_height="match_parent"
-                android:layout_marginLeft="58dp"
-                android:gravity="center"
-                android:text="Select subject" />
+                    <Spinner
+                        android:id="@+id/semSelectSpinner"
+                        style="@style/Widget.AppCompat.Spinner.DropDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="90dp"
+                        android:autofillHints="College"
+                        android:dropDownWidth="wrap_content"
+                        android:spinnerMode="dialog" />
 
 
-            <Spinner
-                android:id="@+id/subSelectSpinner"
-                style="@style/Widget.AppCompat.Spinner.DropDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="58dp"
-                android:autofillHints="Combination"
-                android:dropDownWidth="wrap_content"
-                android:spinnerMode="dialog" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/White"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="58dp"
+                        android:gravity="center"
+                        android:text="Select subject" />
+
+                    <Spinner
+                        android:id="@+id/subSelectSpinner"
+                        style="@style/Widget.AppCompat.Spinner.DropDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="102dp"
+                        android:autofillHints="Combination"
+                        android:dropDownWidth="wrap_content"
+                        android:spinnerMode="dialog" />
 
 
-        </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
 
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pdfRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/goToSellActivity"/>
 
 
