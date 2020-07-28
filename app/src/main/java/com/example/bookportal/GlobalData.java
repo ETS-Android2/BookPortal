@@ -11,6 +11,9 @@ public class GlobalData extends Application {
     String phone;
     String name;
     String sem;
+    String subject;
+    String userID;
+
 
     public String getSem() {
         return sem;
@@ -28,9 +31,6 @@ public class GlobalData extends Application {
         this.subject = subject;
     }
 
-    String subject;
-
-    String userID;
 
     public String getUserID() {
         return userID;
@@ -39,7 +39,6 @@ public class GlobalData extends Application {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
 
 
     public String getName() {
@@ -57,8 +56,6 @@ public class GlobalData extends Application {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-
 
 
     public String getCollegePath() {

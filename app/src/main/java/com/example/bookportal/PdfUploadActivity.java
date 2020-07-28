@@ -108,10 +108,6 @@ public class PdfUploadActivity extends AppCompatActivity {
 
 
 
-
-
-
-
         semList = new ArrayList<>();
         semAdapter =new ArrayAdapter<String>(PdfUploadActivity.this, android.R.layout.simple_spinner_dropdown_item, semList);
         semSpinner.setAdapter(semAdapter);
@@ -196,14 +192,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     private void getSpinnerData() {
 
-        Log.i("TAG", "getSpinnerData: " + collegePath +" "+ combinationPath);
 
-
-//        mStore.collection("College")
-//                .document(collegePath)
-//                .collection("Combination")
-//                .document(combinationPath)
-//                .collection("PDFData")
         subjectsRef
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -262,8 +251,6 @@ public class PdfUploadActivity extends AppCompatActivity {
     }
 
 
-
-
     private void uploadTextdata(String downloadURL, String pdfName) {
 
         String docID = String.valueOf(System.currentTimeMillis());
@@ -277,7 +264,6 @@ public class PdfUploadActivity extends AppCompatActivity {
         mMap.put("userID", userId);
 
 
-        Log.i("TAG", "uploadTextdata: " +sem + sub);
 
         mStore.collection("College")
                 .document(collegePath)
@@ -339,9 +325,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                                 String pdfName = pdfname.getText().toString();
 
                                 uploadTextdata(downloadURL,pdfName);
-
-
-
                             }
                         });
 

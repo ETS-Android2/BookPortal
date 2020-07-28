@@ -14,20 +14,13 @@
 
 
 
-        <Button
-            android:id="@+id/goToSellActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="upload button"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
 
             <LinearLayout
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
                 android:padding="5dp"
                 android:background="@color/banner_background_light"
                 android:layout_width="match_parent"
@@ -61,6 +54,12 @@
 
 
                 </LinearLayout>
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:outlineSpotShadowColor="@color/card"
+                    android:background="?android:attr/listDivider" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,6 +106,19 @@
 
 
 
+
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/main_progress_circle_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progress"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

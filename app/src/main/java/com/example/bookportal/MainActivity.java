@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mStore = FirebaseFirestore.getInstance();
         //mSearchText = findViewById(R.id.search_text);
 
-        mProgressCircle = findViewById(R.id.main_progress_circle);
+        mProgressCircle = findViewById(R.id.main_progress_circle_1);
 
         final GlobalData globalData = (GlobalData) getApplication();
 
@@ -268,8 +268,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             super.onBackPressed();
     }
-
-
 
 
 // TESTING

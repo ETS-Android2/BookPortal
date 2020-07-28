@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,6 +53,8 @@ public class PdfActivity extends AppCompatActivity {
     ArrayAdapter<String> subSelectAdapter;
     ArrayList<String> subSelectList;
 
+    ProgressBar progressBar;
+
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
     CollectionReference subjectsRef;
@@ -65,7 +68,7 @@ public class PdfActivity extends AppCompatActivity {
 //        mPDFList.clear();
 
 
-        goToSell = findViewById(R.id.goToSellActivity);
+
 
         final GlobalData globalData = (GlobalData) getApplication();
         collegePath = globalData.getCollegePath();
@@ -80,6 +83,7 @@ public class PdfActivity extends AppCompatActivity {
 
         semSelectSpinner = findViewById(R.id.semSelectSpinner);
         subSelectSpinner = findViewById(R.id.subSelectSpinner);
+        progressBar = findViewById(R.id.main_progress_circle_1);
 
 
         mPDFList= new ArrayList<>();
@@ -87,8 +91,6 @@ public class PdfActivity extends AppCompatActivity {
         pdfRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         pdfRecyclerAdapter = new PdfRecyclerAdapter(this, mPDFList);
         pdfRecycler.setAdapter(pdfRecyclerAdapter);
-
-
 
 
 
@@ -100,6 +102,7 @@ public class PdfActivity extends AppCompatActivity {
         subSelectAdapter =new ArrayAdapter<String>(PdfActivity.this, android.R.layout.simple_spinner_dropdown_item, subSelectList);
         subSelectSpinner.setAdapter(subSelectAdapter);
 
+
         // subjectsRef=mStore.collection("College");
         subjectsRef = mStore.collection("College")
                 .document(collegePath)
@@ -108,8 +111,6 @@ public class PdfActivity extends AppCompatActivity {
                 .collection("PDFData");
 
           getSpinnerData();
-        Log.i("TAG", "onComplete: FSF");
-
 
         semSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -122,8 +123,6 @@ public class PdfActivity extends AppCompatActivity {
 //                mPDFList.clear();
 //
 //                pdfRecyclerAdapter.notifyDataSetChanged();
-
-
 
             }
 
@@ -143,7 +142,7 @@ public class PdfActivity extends AppCompatActivity {
                 mPDFList.clear();
                 Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
                 getRecyclerData(sub,sem);
-                pdfRecyclerAdapter.notifyDataSetChanged();
+//                pdfRecyclerAdapter.notifyDataSetChanged();
 
             }
 
@@ -152,19 +151,12 @@ public class PdfActivity extends AppCompatActivity {
 
             }
         });
-        
 
-        goToSell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PdfActivity.this,PdfUploadActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//
     }
 
     private void getRecyclerData(String sub, String sem) {
+        progressBar.setVisibility(View.VISIBLE);
 
 
         mStore.collection("College")
@@ -189,6 +181,8 @@ public class PdfActivity extends AppCompatActivity {
                     }
                     //mProgressCircle.setVisibility(View.INVISIBLE);
                     pdfRecyclerAdapter.notifyDataSetChanged();
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 }
 
 
@@ -204,37 +198,26 @@ public class PdfActivity extends AppCompatActivity {
         finish();
     }
 
-
-
-
     private void getSpinnerSubData(final String sem) {
-
-
         subjectsRef.document(sem).collection("subjects")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                 if (task.isSuccessful()) {
                     subSelectList.clear();
+                    subSelectList.add(0,"Non Selected");
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String subject = document.getString("name");
                         subSelectList.add(subject);
                     }
                     subSelectAdapter.notifyDataSetChanged();
-
+                    subSelectSpinner.setSelection(0);
                 }
-
             }
         });
-
-
-
     }
 
     private void getSpinnerData() {
-
-
         Log.i("TAG", "getSpinnerData: " + collegePath +" "+ combinationPath);
 
         subjectsRef
