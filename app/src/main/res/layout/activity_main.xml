@@ -33,9 +33,10 @@
 
 
             <RelativeLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:padding="2dp">
 
                 <ImageView
                     android:layout_width="40dp"
@@ -44,14 +45,7 @@
                     android:src="@drawable/menu_icon"
                     android:id="@+id/nav_menu"/>
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/small_button"
-                    android:padding="5dp"
-                    android:src="@drawable/add_missing_place" />
+
             </RelativeLayout>
 
             <ScrollView
@@ -226,7 +220,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
+                                android:layout_margin="0dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="50dp"
                                 android:fontFamily="sans-serif-condensed-medium"
@@ -235,12 +229,7 @@
                                 android:textColor="@color/colorAccent"
                                 android:textSize="30dp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/featured_books_desc"
-                                android:textSize="20dp" />
+
                         </LinearLayout>
 
 

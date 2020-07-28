@@ -47,7 +47,7 @@ public class PdfRecyclerAdapter extends RecyclerView.Adapter<PdfRecyclerAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.pdfNameView.setText("PDF name : " +mPDFList.get(position).getPdf_name());
+        holder.pdfNameView.setText("PDF : "+mPDFList.get(position).getPdf_name());
         String userPdfId = mPDFList.get(position).getUserID();
 
         holder.deletePdfButton.setOnClickListener(new View.OnClickListener() {
