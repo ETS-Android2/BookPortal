@@ -27,7 +27,8 @@
         <activity android:name=".MyBookActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:noHistory="true"/>
         <activity android:name=".SellActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
