@@ -127,7 +127,6 @@ public class PdfUploadActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sem = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), sem, Toast.LENGTH_SHORT).show();
-
                 getSpinnerSubData(sem);
 
 
@@ -140,16 +139,11 @@ public class PdfUploadActivity extends AppCompatActivity {
         });
 
 
-
-
-
         subjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sub = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
-
-
 
 
             }
@@ -160,10 +154,6 @@ public class PdfUploadActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         choosePdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,8 +163,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(PdfUploadActivity.this, "Please wait uploading....", Toast.LENGTH_SHORT).show();
                 }
-
-
                 
             }
         });
@@ -198,8 +186,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                     }
                     subAdapter.notifyDataSetChanged();
                 }
-
-
 
             }
         });
@@ -231,9 +217,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                     }
                     semAdapter.notifyDataSetChanged();
                 }
-
-
-
             }
         });
 
@@ -259,10 +242,7 @@ public class PdfUploadActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
-
-
     }
 
     @Override
@@ -326,8 +306,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                 progressBarPDF.setVisibility(View.INVISIBLE);
                 Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
-
-
             }
         });
 
@@ -336,7 +314,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(PdfUploadActivity.this, PdfActivity.class));
+        startActivity(new Intent(PdfUploadActivity.this, PdfOperationActivity.class));
         finish();
     }
 

@@ -2,26 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
     android:padding="10dp"
+    android:weightSum="6"
     >
     <TextView
+        android:gravity="center"
         android:id="@+id/pdfNameView"
-        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_width="50dp"
         android:layout_height="match_parent"
+        android:layout_weight="3"
         android:text="Name"/>
     <Button
         android:id="@+id/downloadBtn"
-        android:layout_marginLeft="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:text="download"/>
 
     <Button
         android:id="@+id/deletePdfBtn"
-        android:layout_marginLeft="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:layout_width="10dp"
+        android:layout_height="50dp"
         android:text="delete"/>
 
 </LinearLayout>

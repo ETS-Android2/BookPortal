@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menuIcon = findViewById(R.id.nav_menu);
 
         //Recyclers
-        searchedRecycler = findViewById(R.id.searched_recycler);
-        mostviewedRecycler = findViewById(R.id.mostviewed_recycler);
+        //searchedRecycler = findViewById(R.id.searched_recycler);
+       // mostviewedRecycler = findViewById(R.id.mostviewed_recycler);
 
         //Menu
         drawerlayout = findViewById(R.id.drawer_layout);
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pdfActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,PdfActivity.class);
+                Intent intent = new Intent(MainActivity.this,PdfOperationActivity.class);
                 startActivity(intent);
             }
         });

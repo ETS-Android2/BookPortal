@@ -44,6 +44,7 @@
 
     <color name="btnstart">#8256CF</color>
     <color name="btnend">#3E54CD</color>
+    <color name="card">#F3DB0A</color>
 
 
 </resources>

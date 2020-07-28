@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/materialbackground"
+    android:orientation="vertical"
+    tools:context=".PdfOperationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:onClick="back"
+                android:background="#00ffffcc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_black_icon"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/miltonkeynes"
+            android:text="PDF\ 's"
+            android:textColor="@color/black"
+            android:textSize="50sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="130dp"
+            android:fontFamily="@font/miltonkeynes"
+            android:text="Welcome"
+            android:textColor="@color/card"
+            android:textSize="50sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/signatra"
+            android:text="Thanks for choosing Our Platform to Share Knowledge"
+            android:textAlignment="center"
+            android:textColor="@color/card"
+            android:textSize="45sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/pdfs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="download"
+                android:background="@drawable/sell_btn"
+                android:fontFamily="@font/miltonkeynes"
+                android:text="Get PDF 's"
+                android:textColor="@color/black"
+                android:textSize="22dp" />
+
+            <Button
+                android:id="@+id/books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="30dp"
+                android:onClick="upload"
+                android:background="@drawable/sell_btn"
+                android:fontFamily="@font/miltonkeynes"
+                android:text="Upload"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+

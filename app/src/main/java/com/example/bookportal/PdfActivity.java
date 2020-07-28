@@ -41,8 +41,6 @@ public class PdfActivity extends AppCompatActivity {
     private Spinner semSelectSpinner;
     private Spinner subSelectSpinner;
 
-
-
     private List<PdfItems> mPDFList;
     private RecyclerView pdfRecycler;
     private PdfRecyclerAdapter pdfRecyclerAdapter ;
@@ -156,7 +154,7 @@ public class PdfActivity extends AppCompatActivity {
         goToSell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PdfActivity.this,PdfUploadActivity.class);
+                Intent intent = new Intent(PdfActivity.this,PdfOperationActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -229,7 +227,6 @@ public class PdfActivity extends AppCompatActivity {
     }
 
     private void getSpinnerData() {
-
 
 
         Log.i("TAG", "getSpinnerData: " + collegePath +" "+ combinationPath);

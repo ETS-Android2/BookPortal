@@ -21,7 +21,7 @@
 
     <!--Titles and Description-->
     <string name="featured_books">Recently Uploaded Books</string>
-    <string name="featured_books_desc">Books that are uploaded are here fo you</string>
+    <string name="featured_books_desc">>Available books for you to buy</string>
     <string name="most_viewed">Most viewed books</string>
     <string name="categories">Categories</string>
     <string name="view_all">View All</string>

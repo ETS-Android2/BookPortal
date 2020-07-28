@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/collegematerial"
+    android:background="@drawable/backgroundcard"
     android:orientation="vertical"
     tools:context=".PdfUploadActivity">
 
@@ -19,20 +19,22 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:background="#00ffffcc"
-                android:src="@drawable/back_black_icon" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/backbtn"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_icon" />
 
             <TextView
+                android:paddingLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/amaranth_italic"
-                android:text="Pdf's"
-                android:textColor="@color/black"
+                android:text="Uplaod Pdf's"
+                android:textColor="@color/lightWhite"
                 android:textSize="40dp" />
 
         </RelativeLayout>
@@ -57,27 +59,16 @@
                     android:layout_width="match_parent"
                     android:id="@+id/pdfName"
                     android:layout_height="wrap_content"
-                    android:hint="PDF Title"
-                    android:textColor="@color/black" />
+                    android:hint="Book Title"
+                    android:textColorHint="#c1c1c1"
+                    android:textColor="@color/lightWhite" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--Book author-->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:boxCornerRadiusBottomStart="5dp"
-                app:boxCornerRadiusTopStart="5dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Book Author"
-                    android:textColor="@color/black" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <LinearLayout
@@ -143,37 +134,37 @@
 
 
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <com.google.android.material.button.MaterialButton
+
                     android:layout_width="wrap_content"
                     android:id="@+id/choose_pdf"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:background="#c1c1c1"
                     app:cornerRadius="15dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/lightWhite"
                     android:textSize="15sp"
                     android:text="choose PDF File "
                     android:layout_alignParentRight="true"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:elevation="15dp"/>
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.MaterialComponents.Button"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/choose_pdf"
                     android:layout_marginTop="15dp"
+                    android:background="@drawable/buyer_action_btn"
                     android:text="Upload"
-                    android:onClick="UploadPdf"
                     android:textColor="#FFF"
                     android:fontFamily="@font/miltonkeynes"
                     android:textSize="15dp"
                     android:elevation="15dp"
-                    android:backgroundTint="#001068"
                     app:cornerRadius="15dp"/>
 
 
@@ -183,6 +174,7 @@
 
 
         </LinearLayout>
+
 
         <ProgressBar
             android:id="@+id/progressBarpdf"
@@ -195,7 +187,9 @@
             android:indeterminate="true"
             android:visibility="invisible" />
 
+
     </LinearLayout>
+
 
 
 

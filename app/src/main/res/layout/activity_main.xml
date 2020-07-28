@@ -28,7 +28,7 @@
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/backgroundcard"
+            android:background="@drawable/secondarybackground"
             android:orientation="vertical">
 
 
@@ -212,9 +212,12 @@
 
                         <LinearLayout
                             android:id="@+id/top"
-                            android:layout_width="170dp"
-                            android:layout_height="280dp"
-                            android:layout_margin="10dp"
+                            android:layout_width="341dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@color/banner_background"
                             android:orientation="vertical">
 
@@ -225,7 +228,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="50dp"
                                 android:fontFamily="sans-serif-condensed-medium"
-                                android:text="@string/featured_books"
+                                android:text="Books"
                                 android:textAllCaps="true"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="30dp" />
@@ -238,51 +241,56 @@
                                 android:textSize="20dp" />
                         </LinearLayout>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/searched_recycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="290dp"
-                            android:layout_toRightOf="@+id/top"
-                            android:background="@color/home_background" />
+
 
 
                     </RelativeLayout>
 
-                    <LinearLayout
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mostviewed_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toRightOf="@+id/top"
+                        android:background="@color/home_background" />
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="30dp"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:padding="20dp">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/artifika"
-                                android:text="@string/most_viewed"
-                                android:textAllCaps="true"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:text="@string/view_all" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/artifika"-->
+<!--                                android:text="@string/most_viewed"-->
+<!--                                android:textAllCaps="true"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="20sp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_alignParentRight="true"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:text="@string/view_all" />-->
 
 
-                        </RelativeLayout>
+<!--                        </RelativeLayout>-->
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/mostviewed_recycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content" />-->
+<!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"

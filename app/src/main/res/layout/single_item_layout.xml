@@ -1,60 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="18dp"
+    android:layout_width="140dp"
+    android:layout_height="180dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="2dp"
     app:cardElevation="8dp"
-    android:background="@color/card2"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp"
-    android:layout_marginTop="10dp"
     android:id="@+id/card_view"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        >
-
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:orientation="vertical">
 
         <ImageView
-
             android:id="@+id/item_image"
-            android:layout_width="100dp"
-            android:layout_height="200dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/bw" />
-
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:src="@drawable/bw"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/item_image"
             android:fontFamily="@font/baloo"
             android:text="DSA"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textColor="@color/colorstart"
+            android:textSize="20sp" />
+
+
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/item_image"
-            android:padding="10dp"
-            android:text="hjdakjshdkjsadhfkjashlkdfjhlskdjhsgfdghsdkfjghsdkljfggsjkldghjksdfhgkljsdfsd"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:text="Author"/>
 
-
-    </RelativeLayout>
-
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
