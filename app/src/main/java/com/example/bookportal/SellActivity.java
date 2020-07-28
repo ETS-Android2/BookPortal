@@ -2,13 +2,22 @@ package com.example.bookportal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -29,6 +38,14 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +56,6 @@ public class SellActivity extends AppCompatActivity {
 
     private ImageButton mButtonChooseImage;
     private Button mButtonUpload;
-    //private TextView mBookName;
     private EditText mBookName;
     private EditText mAuthorName;
     private EditText mDescription;
@@ -47,18 +63,13 @@ public class SellActivity extends AppCompatActivity {
     private ProgressBar mProgressCircle;
     private ImageView mImageView;
     private TextView offView;
-
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
-
-
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
-
     Boolean btnClicked = false;
-
-
+     String bookName ,description ,authorName;
     String collegePath, combinationPath, phone , owerName;
 
 
@@ -66,7 +77,6 @@ public class SellActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell);
-
 
         mButtonChooseImage = findViewById(R.id.button_choose_image);
         mButtonUpload = findViewById(R.id.button_upload);
@@ -80,18 +90,10 @@ public class SellActivity extends AppCompatActivity {
 
         mProgressCircle.setVisibility(View.INVISIBLE);
 
-
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
-        //userRef = mStore.collection("User");
-
-
-
         final GlobalData globalData = (GlobalData) getApplication();
-
-
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
         owerName = globalData.getName();
@@ -121,7 +123,8 @@ public class SellActivity extends AppCompatActivity {
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFileChooser();
+
+                selectImage();
             }
         });
 
@@ -141,34 +144,79 @@ public class SellActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     public void onBackPressed() {
         startActivity(new Intent(SellActivity.this, MainActivity.class));
         finish();
     }
 
-    public void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+
+    private void selectImage() {
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(SellActivity.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        if (takePictureIntent.resolveActivity(getPackageManager()) != null ){
+                            startActivityForResult(takePictureIntent, 10);
+
+                        }
+
+
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 1);
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i("yes", "onActivityResult: "+requestCode);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data.getData() != null) {
+            Log.i("yes", "onActivityResult: fgff"+requestCode);
+
             offView.setVisibility(View.INVISIBLE);
             mImageUri = data.getData();
             mImageView.setImageURI(mImageUri);
             //displaying the image (before uploading )
         }
+
+
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageUri = getImageUri(this, imageBitmap);
+            offView.setVisibility(View.INVISIBLE);
+            mImageView.setImageURI(mImageUri);
+        }
+
+
     }
 
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
     private String getFileExtension(Uri uri) {
         //when a image file is passed it returns image extension
         ContentResolver cR = getContentResolver();
@@ -178,7 +226,11 @@ public class SellActivity extends AppCompatActivity {
 
     public void uploadData() {
 
-        if (mImageUri != null) {
+         bookName  = mBookName.getText().toString();
+         description = mDescription.getText().toString();
+         authorName = mAuthorName.getText().toString();
+
+        if (mImageUri != null && !TextUtils.isEmpty(bookName) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(authorName) ) {
             mProgressCircle.setVisibility(View.VISIBLE);
 
             // Here we are naming the file with system time (to make sure that it wont over ride with same name)
@@ -207,10 +259,7 @@ public class SellActivity extends AppCompatActivity {
 
 
                                     String url = uri.toString();
-                                    String bookName = mBookName.getText().toString();
-                                    String description = mDescription.getText().toString();
-                                    String authorName = mAuthorName.getText().toString();
-                                    sendTextFile(url, bookName, authorName, description);
+                                    sendTextFile(url);
 
 
                                     Log.i("test", "onSuccess: " + url);
@@ -241,14 +290,14 @@ public class SellActivity extends AppCompatActivity {
                     });
 
         } else {
-            btnClicked = true;
-            Toast.makeText(this, "no file selected", Toast.LENGTH_SHORT).show();
+            btnClicked = false;
+            Toast.makeText(this, "Please fill all fields ", Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
-    public void sendTextFile(String imgUrl, String bookName, String authorName, String description) {
+    public void sendTextFile(String imgUrl) {
 
 
         //Random no for the doc ID
@@ -297,14 +346,7 @@ public class SellActivity extends AppCompatActivity {
             }
         });
 
-////        mStore.collection("College").document(collegePath).collection("Combination")
-////            .document(combinationPath).collection("BookData").add(mMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-////           @Override
-////           public void onComplete(@NonNull Task<DocumentReference> task) {
-////               mProgressCircle.setVisibility(View.INVISIBLE);
-////
-////           }
-////       });
+
 
     }
 }
