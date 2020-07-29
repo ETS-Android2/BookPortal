@@ -57,7 +57,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     ArrayAdapter<String> semAdapter, subAdapter;
     ArrayList<String> semList, subList;
-    private  String sem , sub;
+    private  String semUload , subUload;
 
 
 
@@ -118,12 +118,13 @@ public class PdfUploadActivity extends AppCompatActivity {
 
 
 
+
         semSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sem = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), sem, Toast.LENGTH_SHORT).show();
-                getSpinnerSubData(sem);
+                semUload = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), semUload, Toast.LENGTH_SHORT).show();
+                getSpinnerSubData(semUload);
 
 
             }
@@ -138,9 +139,8 @@ public class PdfUploadActivity extends AppCompatActivity {
         subjectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sub = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), sub, Toast.LENGTH_SHORT).show();
-
+                subUload = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), subUload, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -166,16 +166,17 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     }
 
-    private void getSpinnerSubData(String sem) {
+    private void getSpinnerSubData(String semUload) {
 
 
-        subjectsRef.document(sem).collection("subjects")
+        subjectsRef.document(semUload).collection("subjects")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 if (task.isSuccessful()) {
                     subList.clear();
+                    subList.add(0,"Non Selected");
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String subject = document.getString("name");
                         subList.add(subject);
@@ -193,18 +194,20 @@ public class PdfUploadActivity extends AppCompatActivity {
     private void getSpinnerData() {
 
 
-        subjectsRef
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        subjectsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 if (task.isSuccessful()) {
                     semList.clear();
+                    semList.add(0,"Non Selected");
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        String subject = document.getString("sem");
-                        semList.add(subject);
+                        String semData = document.getString("sem");
+                        semList.add(semData);
                     }
                     semAdapter.notifyDataSetChanged();
+
+
                 }
             }
         });
@@ -270,9 +273,9 @@ public class PdfUploadActivity extends AppCompatActivity {
                 .collection("Combination")
                 .document(combinationPath)
                 .collection("PDFData")
-                .document(sem)
+                .document(semUload)
                 .collection("subjects")
-                .document(sub)
+                .document(subUload)
                 .collection("pdfData")
                 .document(docID)
                 .set(mMap)
@@ -280,7 +283,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         progressBarPDF.setVisibility(View.INVISIBLE);
-
                         btnClicked = false;
                         Toast.makeText(PdfUploadActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
 

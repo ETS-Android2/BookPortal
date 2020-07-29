@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -161,6 +163,7 @@ public class SellActivity extends AppCompatActivity {
                 if (options[item].equals("Take Photo"))
                 {
                          Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    ActivityCompat.requestPermissions(SellActivity.this, new String[]{Manifest.permission.CAMERA}, 12);
                         if (takePictureIntent.resolveActivity(getPackageManager()) != null ){
                             startActivityForResult(takePictureIntent, 10);
 
