@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,6 +75,9 @@ public class SellActivity extends AppCompatActivity {
     Boolean btnClicked = false;
      String bookName ,description ,authorName;
     String collegePath, combinationPath, phone , owerName;
+
+
+    private static final int CAMERA_PERMISSION_CODE = 100;
 
 
     @Override
@@ -144,12 +149,13 @@ public class SellActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int item) {
                 if (options[item].equals("Take Photo"))
                 {
-                         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        ActivityCompat.requestPermissions(SellActivity.this, new String[]{Manifest.permission.CAMERA}, 12);
-                        if (takePictureIntent.resolveActivity(getPackageManager()) != null ){
-                            startActivityForResult(takePictureIntent, 10);
 
-                        }
+
+
+                    checkPermission(Manifest.permission.CAMERA,
+                            CAMERA_PERMISSION_CODE);
+
+
 
 
                 }
@@ -166,6 +172,33 @@ public class SellActivity extends AppCompatActivity {
         builder.show();
     }
 
+
+
+
+    public void checkPermission(String permission, int requestCode)
+    {
+        if (ContextCompat.checkSelfPermission(SellActivity.this, permission)
+                == PackageManager.PERMISSION_DENIED) {
+
+            // Requesting the permission
+            ActivityCompat.requestPermissions(SellActivity.this,
+                    new String[] { permission },
+                    requestCode);
+        }
+        else {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null ){
+                startActivityForResult(takePictureIntent, 10);
+
+            }
+
+
+            Toast.makeText(SellActivity.this,
+                    "Permission already granted",
+                    Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
 
 
 

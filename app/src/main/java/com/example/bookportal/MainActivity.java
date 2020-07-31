@@ -22,6 +22,7 @@ import com.example.bookportal.adapter.ItemsRecyclerAdapter;
 
 import com.example.bookportal.domain.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -228,6 +229,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
 
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                DataLoading = false;
+                mProgressCircle.setVisibility(View.INVISIBLE);
+                Toast.makeText(MainActivity.this, "Failed to load " +e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
 
 
@@ -249,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_shop:
                 startActivity(new Intent(MainActivity.this, BookStoreActivity.class));
+                break;
             case R.id.nav_pdf:
                 startActivity(new Intent(MainActivity.this, PdfOperationActivity.class));
                 break;
@@ -334,8 +343,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(drawerlayout.isDrawerVisible(GravityCompat.START)){
             drawerlayout.closeDrawer(GravityCompat.START);
         }
-        else
-            super.onBackPressed();
+        else{
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+
+        }
+
     }
 
 

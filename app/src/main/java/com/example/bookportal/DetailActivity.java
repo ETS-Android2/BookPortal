@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ public class  DetailActivity extends AppCompatActivity {
     private TextView authorName;
     private TextView bookDes;
     private TextView ownerName;
-    private Button delBtn;
+    private ImageButton delBtn;
     String number, docID;
     Boolean correctUser = false;
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/backgroundcard"
     android:orientation="vertical"
     tools:context=".DetailActivity">
@@ -18,6 +18,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/nav_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:onClick="mainscreen"
+                android:src="@drawable/back_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,24 +44,24 @@
             android:layout_height="wrap_content">
 
             <ozaydin.serkan.com.image_zoom_view.ImageViewZoom
-                android:layout_margin="30dp"
-                android:contentDescription="@string/common_google_play_services_enable_text"
                 android:id="@+id/book_img_det"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@color/banner_background_light"                android:layout_centerHorizontal="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="30dp"
                 android:layout_marginTop="20dp"
+                android:background="@color/banner_background_light"
+                android:contentDescription="@string/common_google_play_services_enable_text"
                 android:src="@drawable/firstpage" />
 
         </RelativeLayout>
 
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp">
 
             <LinearLayout
@@ -63,11 +70,10 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:background="#9A998F"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:background="#81FFE800"
                     android:paddingLeft="15dp">
 
                     <TextView
@@ -94,13 +100,24 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="?android:attr/listDivider" />
+
+                </RelativeLayout>
 
                 <RelativeLayout
-                    android:background="#9A998F"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:background="#81FFE800"
                     android:paddingLeft="15dp">
 
                     <TextView
@@ -129,29 +146,28 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
-                    android:paddingTop="15dp"
+
                     android:paddingRight="15dp">
 
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:background="?android:attr/listDivider" />
 
                 </RelativeLayout>
 
 
-
                 <RelativeLayout
-                    android:background="#9A998F"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+
+                    android:background="#81FFE800"
                     android:paddingLeft="15dp">
 
                     <TextView
@@ -208,7 +224,7 @@
                         android:fontFamily="@font/miltonkeynes"
                         android:shadowColor="#c1c1c1"
                         android:text="For Details Contact "
-                        android:textColor="@color/colorend"
+                        android:textColor="@color/search_background"
                         android:textSize="25dp" />
 
                     <TextView
@@ -220,7 +236,7 @@
                         android:paddingLeft="20dp"
                         android:paddingTop="11dp"
                         android:text="Owner Name: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/home_background"
                         android:textSize="20sp" />
 
                     <TextView
@@ -233,7 +249,7 @@
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
                         android:text="Mithun Babbira"
-                        android:textColor="@color/black"
+                        android:textColor="@color/home_background"
                         android:textSize="25sp" />
 
 
@@ -258,47 +274,46 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_marginTop="15dp"
                     android:paddingLeft="50dp"
-                    android:layout_gravity="bottom"
                     android:paddingRight="50dp">
 
                     <Button
                         android:id="@+id/call_btn"
-                        android:onClick="callOperation"
-                        android:text="call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/buyer_action_btn"
+                        android:onClick="callOperation"
+                        android:text="call"
                         android:textColor="#FFF" />
 
                     <Button
                         android:id="@+id/whats_app_btn"
-                        android:onClick="sendWhatsApp"
-                        android:text="Whats app msg"
-
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:background="@drawable/buyer_action_btn"
+                        android:onClick="sendWhatsApp"
+                        android:text="Whats app"
                         android:textColor="#FFF" />
 
 
                 </RelativeLayout>
 
 
-                <Button
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="center"
-
+                <ImageButton
                     android:id="@+id/delBtn"
-                    android:layout_width="245dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
-
+                    android:background="#00ffffcc"
+                    android:src="@drawable/delete_icon"
                     android:onClick="deleteAction"
                     android:text="Delete Button" />
+
             </LinearLayout>
 
 
@@ -315,7 +330,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

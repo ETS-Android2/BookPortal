@@ -24,19 +24,10 @@ public class DeletePDFActivity extends AppCompatActivity {
     PdfItems pdfItems;
 
     Boolean correctUser = false;
-
-
     private FirebaseStorage mStorageRef;
-
-
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
     CollectionReference subjectsRef;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +67,6 @@ public class DeletePDFActivity extends AppCompatActivity {
             correctUser = true;
         }
         if(correctUser){
-
-
             final StorageReference pdfDelPath = mStorageRef
                     .getReferenceFromUrl(pdfItems.getPdf_url());
 
@@ -85,7 +74,6 @@ public class DeletePDFActivity extends AppCompatActivity {
             pdfDelPath.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-
 
                     subjectsRef.document(pdfItems.getDocID())
                             .delete()
@@ -98,12 +86,6 @@ public class DeletePDFActivity extends AppCompatActivity {
                                     finish();
                                 }
                             });
-
-
-
-
-
-
 
 
                 }

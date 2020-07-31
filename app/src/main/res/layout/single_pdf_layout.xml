@@ -11,6 +11,7 @@
     app:cardCornerRadius="10dp">
 
     <LinearLayout
+        android:id="@+id/mainLay"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/card"
@@ -22,7 +23,8 @@
         <TextView
 
             android:id="@+id/pdfNameView"
-            android:layout_width="190dp"
+            android:layout_marginLeft="13dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:fontFamily="@font/baloo"
@@ -31,7 +33,8 @@
             android:text="Name" />
 
 
-        <LinearLayout
+        <RelativeLayout
+
 
 
 
@@ -43,19 +46,25 @@
             <Button
                 android:id="@+id/downloadBtn"
 
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/deletePdfBtn"
 
                 android:text="download" />
 
             <Button
                 android:id="@+id/deletePdfBtn"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_alignParentRight="true"
 
                 android:text="delete" />
 
-        </LinearLayout>
+        </RelativeLayout
+
+
+
+ >
 
 
     </LinearLayout>

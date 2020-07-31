@@ -5,115 +5,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
+
     <LinearLayout
-        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#FFF"
-        android:padding="20dp">
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
 
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/logo_img"
             android:layout_width="150dp"
             android:layout_height="140dp"
             android:src="@drawable/book"
-            android:transitionName="logo_img"
-            />
+            android:transitionName="logo_img" />
+
         <TextView
             android:id="@+id/logo_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/hiluck"
             android:text="Hello, Welcome!!"
-            android:textSize="50dp"
             android:textColor="#000"
-            android:transitionName="logo_Text"
-            android:fontFamily="@font/hiluck"/>
-
+            android:textSize="50dp"
+            android:transitionName="logo_Text" />
 
         <TextView
             android:id="@+id/second_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/miltonkeynes"
             android:text="Login to continue"
             android:textSize="25dp"
-            android:transitionName="slogan"
-            android:fontFamily="@font/miltonkeynes"/>
+            android:transitionName="slogan" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical">
 
             <!-- Usernanme-->
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
-                android:hint="Email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:hint="Email">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/log_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:transitionName="uname"/>
+                    android:transitionName="uname" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password-->
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/password"
                 android:hint="Password"
-                app:passwordToggleEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:passwordToggleEnabled="true">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/log_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:transitionName="passwd"/>
+                    android:transitionName="passwd" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
 
+                android:id="@+id/log_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:id="@+id/log_btn"
-                android:background="#000"
-                android:textColor="#FFF"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:transitionName="loginbtn"/>
+                android:background="#000"
+                android:text="Login"
+                android:textColor="#FFF"
+                android:transitionName="loginbtn" />
 
             <Button
+                android:id="@+id/sbtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New User? SIGN UP"
-                android:background="#00ffffcc"
                 android:layout_gravity="right"
-                android:elevation="0dp"
-                android:id="@+id/sbtn"
-                android:onClick="signUp"
                 android:layout_margin="5dp"
-                android:transitionName="signupbtn"
-                />
+                android:background="#00ffffcc"
+                android:elevation="0dp"
+                android:onClick="signUp"
+                android:text="New User? SIGN UP"
+                android:transitionName="signupbtn" />
         </LinearLayout>
 
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progress_circle"
-        android:indeterminateDrawable="@drawable/progress"
-
         android:layout_width="50dp"
+
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
