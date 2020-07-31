@@ -186,7 +186,9 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
         switch (item.getItemId()) {
             case R.id.nav_shop:
                 startActivity(new Intent(BookStoreActivity.this, BookStoreActivity.class));
+                break;
             case R.id.nav_pdf:
+                startActivity(new Intent(BookStoreActivity.this, PdfOperationActivity.class));
                 break;
             case R.id.nav_home:
                 startActivity(new Intent(BookStoreActivity.this, MainActivity.class));

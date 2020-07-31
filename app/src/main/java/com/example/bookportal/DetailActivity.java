@@ -258,4 +258,8 @@ public class  DetailActivity extends AppCompatActivity {
     }
 
 
+    public void mainscreen(View view) {
+        startActivity(new Intent(DetailActivity.this, MainActivity.class));
+        finish();
+    }
 }
