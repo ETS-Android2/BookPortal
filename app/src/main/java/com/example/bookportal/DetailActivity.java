@@ -33,7 +33,7 @@ import java.util.List;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class DetailActivity extends AppCompatActivity {
+public class  DetailActivity extends AppCompatActivity {
     private ImageView bookImage;
     private TextView bookName;
     private TextView authorName;
@@ -228,6 +228,12 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(DetailActivity.this, MainActivity.class));
+        finish();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {

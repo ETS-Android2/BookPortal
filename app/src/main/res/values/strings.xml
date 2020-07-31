@@ -40,5 +40,8 @@
     <string name="mybooks">My Books</string>
     <string name="mysellbooks">Sell Books</string>
     <string name="logout">Logout</string>
+    <string name="sell">Sell Book</string>
+    <string name="store">BookStore</string>
+    <string name="navpdf">PDF\'s</string>
 
 </resources>

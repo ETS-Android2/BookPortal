@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText mUserPhone;
     private EditText mUserUSN;
     private TextView personName , personEmail;
+    private RelativeLayout goToMyBook;
 
 
     boolean btnClicked = false;
@@ -52,9 +54,22 @@ public class ProfileActivity extends AppCompatActivity {
         mUserUSN = findViewById(R.id.profile_usn);
         personName =findViewById(R.id.person_name);
         personEmail =findViewById(R.id.person_email);
+        goToMyBook =findViewById(R.id.relativeMybook);
 
         mProgressCircle = findViewById(R.id.progress_circle);
         mProgressCircle.setVisibility(View.INVISIBLE);
+
+
+        goToMyBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, MyBookActivity.class));
+                finish();
+
+            }
+        });
+
+
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -94,42 +109,50 @@ public class ProfileActivity extends AppCompatActivity {
         usn = mUserUSN.getText().toString();
         userId = mAuth.getCurrentUser().getUid();
 
-        if(!btnClicked && !userName.isEmpty() && !userEmail.isEmpty() && !userPhone.isEmpty() && !usn.isEmpty() ){
-            btnClicked = true;
-            mProgressCircle.setVisibility(View.VISIBLE);
+        if(!btnClicked){
+            if(!userName.isEmpty() && !userEmail.isEmpty() && !userPhone.isEmpty() && !usn.isEmpty() ){
+                btnClicked = true;
+                mProgressCircle.setVisibility(View.VISIBLE);
 
 
 
-            mStore.collection("User")
-                    .document(userId)
-                    .collection("Path")
-                    .document(userId)
-                    .update("name", userName
-                            ,"email", userEmail
-                            ,"phone", userPhone
-                    ,"usn",usn)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
+                mStore.collection("User")
+                        .document(userId)
+                        .collection("Path")
+                        .document(userId)
+                        .update("name", userName
+                                ,"email", userEmail
+                                ,"phone", userPhone
+                                ,"usn",usn)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
 
-                            personName.setText(userName);
-                            personEmail.setText(userEmail);
+                                personName.setText(userName);
+                                personEmail.setText(userEmail);
 
-                            btnClicked = false;
-                            mProgressCircle.setVisibility(View.INVISIBLE);
-                            Toast.makeText(ProfileActivity.this, "Data updated", Toast.LENGTH_SHORT).show();
+                                btnClicked = false;
+                                mProgressCircle.setVisibility(View.INVISIBLE);
+                                Toast.makeText(ProfileActivity.this, "Data updated", Toast.LENGTH_SHORT).show();
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    btnClicked = false;
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        btnClicked = false;
 
-                    mProgressCircle.setVisibility(View.INVISIBLE);
-                    Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        mProgressCircle.setVisibility(View.INVISIBLE);
+                        Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                }
-            });
+                    }
+                });
+            }
+            else {
+                Toast.makeText(this, "Please enter all the detail", Toast.LENGTH_SHORT).show();
+
+
+            }
+
 
 
         }else{
@@ -146,5 +169,11 @@ public class ProfileActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(ProfileActivity.this, MainActivity.class));
         finish();
+    }
+
+    public void homescreen(View view) {
+        startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+        finish();
+
     }
 }

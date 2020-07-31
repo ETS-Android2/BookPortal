@@ -16,17 +16,13 @@
             android:title="@string/navsearch" />
 
         <item
-            android:id="@+id/nav_question"
-            android:icon="@drawable/question_icon"
-            android:title="@string/navquest" />
+            android:id="@+id/nav_pdf"
+            android:icon="@drawable/pdf_icon"
+            android:title="@string/navpdf" />
         <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/shop_icon"
             android:title="@string/navshop" />
-        <item
-            android:id="@+id/nav_News"
-            android:icon="@drawable/news_icon"
-            android:title="@string/news" />
 
 
     </group>
@@ -47,7 +43,7 @@
 
                 <item
                     android:id="@+id/nav_sell_books"
-                    android:icon="@drawable/mybooks_icon"
+                    android:icon="@drawable/sell_icon"
                     android:title="@string/mysellbooks" />
 
 

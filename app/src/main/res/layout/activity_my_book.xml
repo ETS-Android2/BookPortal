@@ -8,6 +8,43 @@
     tools:context=".MyBookActivity">
 
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+
+            <ImageView
+                android:id="@+id/backbtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:onClick="goBAK"
+                android:src="@drawable/back_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/amaranth_italic"
+                android:paddingLeft="20dp"
+                android:text="My Books"
+                android:textColor="@color/lightWhite"
+                android:textSize="40dp" />
+
+        </RelativeLayout>
+
+
+
+
+
     <LinearLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
@@ -29,6 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/home_toolba" />
 
     </LinearLayout>
+</LinearLayout>
     <ProgressBar
         android:id="@+id/progress_circle"
         android:layout_width="50dp"

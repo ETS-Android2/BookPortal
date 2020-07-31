@@ -107,4 +107,9 @@ public class MyBookActivity extends AppCompatActivity {
         finish();
     }
 
+    public void goBAK(View view) {
+
+        startActivity(new Intent(MyBookActivity.this, MainActivity.class));
+        finish();
+    }
 }

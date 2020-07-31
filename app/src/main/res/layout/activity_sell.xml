@@ -14,8 +14,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,8 +23,9 @@
                 android:id="@+id/nav_back"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_centerVertical="true" />
-            <!--            android:src="@drawable/back_icon"-->
+                android:layout_centerVertical="true"
+                android:onClick="mainscreen"
+                android:src="@drawable/back_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,28 +42,27 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:background="@color/banner_background_light">
 
             <ImageView
-                android:foregroundGravity="center"
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:foregroundGravity="center" />
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="#DCFFC107"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+
+            android:layout_marginTop="20dp"
+
             android:layout_marginBottom="20dp"
+
             android:orientation="vertical">
 
 
@@ -74,11 +72,12 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:hint="Title"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textColorHint="#5C5A5A"
+                android:textColorHint="#FFF"
                 app:counterTextColor="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -86,9 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-
-
-                    />
+                    android:textColor="#FFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -102,15 +99,15 @@
                 android:hint="Author"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textColorHint="#5C5A5A"
+                android:textColorHint="#FFF"
                 app:counterTextColor="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/author_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="#FFF" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,26 +122,27 @@
                 android:hint="Description"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textColorHint="#5C5A5A"
+                android:textColorHint="#FFF"
                 app:counterTextColor="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="#FFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:outlineAmbientShadowColor="@color/colorPrimary"/>
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"
+            android:outlineAmbientShadowColor="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,7 +150,6 @@
             android:orientation="horizontal">
 
             <TextView
-
                 android:id="@+id/textOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,9 +158,9 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="50dp"
                 android:fontFamily="@font/amaranth_italic"
-
                 android:text="Choose Book Image"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <ImageButton
 
@@ -173,11 +170,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
                 android:layout_marginStart="80dp"
-
                 android:background="#00ffffcc"
-
-                app:srcCompat="@drawable/ic_baseline_camera_24" />
-            <!--            android:src="@drawable/camera_icon"-->
+                app:srcCompat="@drawable/camera_icon" />
 
 
         </LinearLayout>
@@ -200,6 +194,7 @@
 
 
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progress_circle"
         android:layout_width="50dp"

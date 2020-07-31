@@ -239,4 +239,9 @@ public class PdfActivity extends AppCompatActivity {
         });
 
     }
+
+    public void goBAK(View view) {
+        startActivity(new Intent(PdfActivity.this, MainActivity.class));
+        finish();
+    }
 }

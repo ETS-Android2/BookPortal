@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.bookportal.adapter.ItemsRecyclerAdapter;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
-    private LinearLayout pdfActivity;
+    private LinearLayout pdfActivity, sellbook, bookstore;
 
     private List<Items> mItemList;
     private RecyclerView itemRecyclerView;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ProgressBar mProgressCircle;
     private Toolbar mToolBar;
     String collegePath, combinationPath , phone , name;
+
+    private Boolean DataLoading =true;
 
 
     //SEARCH
@@ -80,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setSupportActionBar(mToolBar);
         pdfActivity = findViewById(R.id.pdfActivity);
+        sellbook = findViewById(R.id.sellbook);
+        bookstore = findViewById(R.id.bookstore);
 
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
@@ -124,11 +129,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pdfActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,PdfOperationActivity.class);
-                startActivity(intent);
+
+                if(DataLoading){
+                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(MainActivity.this,PdfOperationActivity.class);
+                    startActivity(intent);
+
+                }
+
+
             }
         });
 
+
+        sellbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(DataLoading){
+                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(MainActivity.this,SellActivity.class);
+                    startActivity(intent);
+
+                }
+
+
+
+
+            }
+        });
+
+
+        bookstore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(DataLoading){
+                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(MainActivity.this,BookStoreActivity.class);
+                    startActivity(intent);
+
+                }
+
+
+
+
+            }
+        });
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -170,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Items items = doc.toObject(Items.class);
                         mItemList.add(items);
                     }
+                    DataLoading = false;
                     mProgressCircle.setVisibility(View.INVISIBLE);
                     itemsRecyclerAdapter.notifyDataSetChanged();
                 }
@@ -189,32 +242,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
 
-        if (item.getItemId() == R.id.nav_logout) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-
-        }else if (item.getItemId() == R.id.nav_search){
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
-            finish();
+        switch (item.getItemId()) {
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                break;
+            case R.id.nav_shop:
+                startActivity(new Intent(MainActivity.this, BookStoreActivity.class));
+            case R.id.nav_pdf:
+                startActivity(new Intent(MainActivity.this, PdfOperationActivity.class));
+                break;
+            case R.id.nav_home:
+                break;
+            case R.id.nav_myacc:
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                break;
+            case R.id.nav_search:
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                break;
+            case R.id.nav_sell_books:
+                startActivity(new Intent(MainActivity.this, SellActivity.class));
+                break;
+            case R.id.nav_mybooks:
+                startActivity(new Intent(MainActivity.this, MyBookActivity.class));
+                break;
         }
-        else if (item.getItemId() == R.id.nav_mybooks){
-            startActivity(new Intent(MainActivity.this, MyBookActivity.class));
-            finish();
-        }
-        else if (item.getItemId() == R.id.nav_sell_books){
-            startActivity(new Intent(MainActivity.this, SellActivity.class));
-            finish();
-        }else if (item.getItemId() == R.id.nav_myacc){
-            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            finish();
-        }else if (item.getItemId() == R.id.nav_shop){
-            startActivity(new Intent(MainActivity.this, BookStoreActivity.class));
-            finish();
-        }
-
-
         return true;
+
+
+    
     }
 
     private void navigationDrawer() {
@@ -223,15 +279,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navvigationView.setNavigationItemSelectedListener(this);
         navvigationView.setCheckedItem(R.id.nav_home);
 
-        menuIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
-                    drawerlayout.closeDrawer(GravityCompat.START);
-                } else
-                    drawerlayout.openDrawer(GravityCompat.START);
-            }
-        });
+
+
+
+
+            menuIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (DataLoading) {
+                        Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                    } else {
+
+
+                        if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
+                            drawerlayout.closeDrawer(GravityCompat.START);
+                        } else
+                            drawerlayout.openDrawer(GravityCompat.START);
+                    }
+                }
+
+
+            });
+
 
         animateNavbar();
     }

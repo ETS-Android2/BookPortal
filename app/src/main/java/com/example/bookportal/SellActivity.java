@@ -102,24 +102,6 @@ public class SellActivity extends AppCompatActivity {
         phone = globalData.getPhone();
 
 
-////        userID = mAuth.getCurrentUser().getUid();
-////        mStore.collection("User").document(mAuth.getCurrentUser().getUid())
-////                .collection("Path").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-////            @Override
-////            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-////                if (task.isSuccessful()) {
-////
-////                    for (QueryDocumentSnapshot document : task.getResult()) {
-////                        collegePath = document.getString("college");
-////                        combinationPath = document.getString("combination");
-////                        phone = document.getString("phone");
-////                        //viewQ.setText(collegePath + "  " + combinationPath);
-////
-////
-////                    }
-////                }
-////            }
-////        });
 
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +145,7 @@ public class SellActivity extends AppCompatActivity {
                 if (options[item].equals("Take Photo"))
                 {
                          Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    ActivityCompat.requestPermissions(SellActivity.this, new String[]{Manifest.permission.CAMERA}, 12);
+                        ActivityCompat.requestPermissions(SellActivity.this, new String[]{Manifest.permission.CAMERA}, 12);
                         if (takePictureIntent.resolveActivity(getPackageManager()) != null ){
                             startActivityForResult(takePictureIntent, 10);
 
@@ -351,5 +333,10 @@ public class SellActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void mainscreen(View view) {
+        startActivity(new Intent(SellActivity.this, MainActivity.class));
+        finish();
     }
 }
