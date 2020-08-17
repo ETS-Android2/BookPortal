@@ -168,10 +168,6 @@ public class PdfUploadActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         UploadPdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,8 +194,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                                 });
 
 
-
-
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -220,9 +214,6 @@ public class PdfUploadActivity extends AppCompatActivity {
                         });
 
 
-
-
-
             }
         });
 
@@ -231,9 +222,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
     private void getSpinnerSubData(String semUload) {
 
-
-        subjectsRef.document(semUload).collection("subjects")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        subjectsRef.document(semUload).collection("subjects").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
@@ -327,8 +316,6 @@ public class PdfUploadActivity extends AppCompatActivity {
         mMap.put("pdf_name", pdfName);
         mMap.put("docID", docID);
         mMap.put("userID", userId);
-
-
 
         mStore.collection("College")
                 .document(collegePath)
