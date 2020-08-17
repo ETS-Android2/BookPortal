@@ -97,7 +97,6 @@ public class SchemeActivity extends AppCompatActivity {
                     }
                     schemeRecyclerAdapter.notifyDataSetChanged();
                     progressBar1.setVisibility(View.INVISIBLE);
-
                 }
 
 

@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class PdfUploadActivity extends AppCompatActivity {
 
-    private Button choosePdf;
+    private Button choosePdf , UploadPdf;
     final static int PICK_PDF_CODE = 12;
     private EditText pdfname;
     ProgressBar progressBarPDF;
@@ -79,6 +79,9 @@ public class PdfUploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pdf_upload);
 
         choosePdf = findViewById(R.id.choose_pdf);
+        UploadPdf = findViewById(R.id.UploadPdf);
+
+
 
 
 
@@ -166,6 +169,64 @@ public class PdfUploadActivity extends AppCompatActivity {
         });
 
 
+
+
+
+        UploadPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnClicked = true;
+
+                progressBarPDF.setVisibility(View.VISIBLE);
+
+                final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
+
+                fileReference.putFile(pdfData)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String downloadURL = uri.toString();
+                                        String pdfName = pdfname.getText().toString();
+
+                                        uploadTextdata(downloadURL,pdfName);
+                                    }
+                                });
+
+
+
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                btnClicked = false;
+                                progressBarPDF.setVisibility(View.INVISIBLE);
+                                Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                            }
+                        });
+
+
+
+
+
+            }
+        });
+
+
     }
 
     private void getSpinnerSubData(String semUload) {
@@ -226,9 +287,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
 
-//            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-//                    Uri.parse("package:" + getPackageName()));
-//            startActivity(intent);
+
             return;
         }
 
@@ -249,6 +308,7 @@ public class PdfUploadActivity extends AppCompatActivity {
                 //uploading the file
 //                uploadFile(data.getData());
                 pdfData = data.getData();
+                UploadPdf.setVisibility(View.VISIBLE);
             }else{
                 Toast.makeText(this, "No file chosen", Toast.LENGTH_SHORT).show();
             }
@@ -308,52 +368,52 @@ public class PdfUploadActivity extends AppCompatActivity {
         finish();
     }
 
-
-    public void UploadPdf(View view) {
-
-        btnClicked = true;
-
-        progressBarPDF.setVisibility(View.VISIBLE);
-
-        final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
-
-        fileReference.putFile(pdfData)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String downloadURL = uri.toString();
-                                String pdfName = pdfname.getText().toString();
-
-                                uploadTextdata(downloadURL,pdfName);
-                            }
-                        });
-
-
-
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        btnClicked = false;
-                        progressBarPDF.setVisibility(View.INVISIBLE);
-                        Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-
-                    }
-                });
-    }
+//
+//    public void UploadPdf(View view) {
+//
+//        btnClicked = true;
+//
+//        progressBarPDF.setVisibility(View.VISIBLE);
+//
+//        final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
+//
+//        fileReference.putFile(pdfData)
+//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                String downloadURL = uri.toString();
+//                                String pdfName = pdfname.getText().toString();
+//
+//                                uploadTextdata(downloadURL,pdfName);
+//                            }
+//                        });
+//
+//
+//
+//
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        btnClicked = false;
+//                        progressBarPDF.setVisibility(View.INVISIBLE);
+//                        Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//
+//                    }
+//                })
+//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                    }
+//                });
+//    }
 
     public void goBAK(View view) {
         startActivity(new Intent(PdfUploadActivity.this, PdfOperationActivity.class));
