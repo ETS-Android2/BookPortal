@@ -73,7 +73,6 @@ public class PdfActivity extends AppCompatActivity {
         final GlobalData globalData = (GlobalData) getApplication();
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
-        String userID = globalData.getUserID();
         phone = globalData.getPhone();
 
 

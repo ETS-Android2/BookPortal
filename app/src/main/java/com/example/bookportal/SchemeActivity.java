@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -58,9 +59,22 @@ public class SchemeActivity extends AppCompatActivity {
         schemeRecycler.setAdapter(schemeRecyclerAdapter);
 
 
-        //getRecyclerData();
+        getRecyclerData();
 
 
+
+
+
+
+
+
+
+
+
+    }
+
+
+    private void getRecyclerData() {
 
 
         progressBar1.setVisibility(View.VISIBLE);
@@ -91,18 +105,18 @@ public class SchemeActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-    }
-
-
-    private void getRecyclerData() {
-
     }
 
 
     public void goBAK(View view) {
+
+        startActivity(new Intent(SchemeActivity.this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SchemeActivity.this, MainActivity.class));
+        finish();
     }
 }
