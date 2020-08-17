@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
-    private LinearLayout pdfActivity, sellbook, bookstore;
+    private LinearLayout pdfActivity, sellbook, bookstore ,scheme;
 
     private List<Items> mItemList;
     private RecyclerView itemRecyclerView;
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pdfActivity = findViewById(R.id.pdfActivity);
         sellbook = findViewById(R.id.sellbook);
         bookstore = findViewById(R.id.bookstore);
+        scheme = findViewById(R.id.scheme);
 
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
@@ -137,6 +138,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
                 }else{
                     Intent intent = new Intent(MainActivity.this,PdfOperationActivity.class);
+                    startActivity(intent);
+
+                }
+
+
+            }
+        });
+
+        scheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(DataLoading){
+                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(MainActivity.this,SchemeActivity.class);
                     startActivity(intent);
 
                 }

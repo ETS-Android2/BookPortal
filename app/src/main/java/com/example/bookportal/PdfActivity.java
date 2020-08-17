@@ -70,8 +70,6 @@ public class PdfActivity extends AppCompatActivity {
 //        mPDFList.clear();
 
 
-
-
         final GlobalData globalData = (GlobalData) getApplication();
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
@@ -190,7 +188,6 @@ public class PdfActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 

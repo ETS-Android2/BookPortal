@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -21,14 +20,12 @@
             android:theme="@style/navigationtheme"
             app:headerLayout="@layout/header_menu"
             app:menu="@menu/main_menu" />
-
         <LinearLayout
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/secondarybackground"
             android:orientation="vertical">
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -41,8 +38,6 @@
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/menu_icon" />
-
-
             </RelativeLayout>
 
             <ScrollView
@@ -75,6 +70,35 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/scheme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:background="@color/card1"
+                                android:elevation="8dp">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/sell_icon" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Scheme"
+                                android:textAlignment="center"
+                                android:textColor="#000000" />
+
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/sellbook"
@@ -86,7 +110,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_margin="10dp"
-
                                 android:background="@color/card1"
                                 android:elevation="8dp">
 
@@ -190,17 +213,16 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="101dp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="104dp"
+                                android:layout_height="match_parent"
                                 android:layout_margin="0dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="50dp"
                                 android:fontFamily="sans-serif-condensed-medium"
-                                android:text="Books"
+                                android:text="Book"
                                 android:textAllCaps="true"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="30dp" />
-
 
                         </LinearLayout>
 
@@ -224,17 +246,11 @@
                         android:layout_marginTop="30dp"
                         android:orientation="vertical"
                         android:padding="20dp">
-
-
                     </LinearLayout>
 
                 </LinearLayout>
             </ScrollView>
-
-
         </LinearLayout>
-
-
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <ProgressBar
@@ -247,5 +263,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
