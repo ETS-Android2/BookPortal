@@ -6,115 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFF"
-        android:orientation="vertical"
-        android:padding="20dp"
-        >
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logo_img"
-            android:layout_width="150dp"
-            android:layout_height="140dp"
-            android:src="@drawable/book"
-            android:transitionName="logo_img" />
 
-        <TextView
-            android:id="@+id/logo_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/hiluck"
-            android:text="Hello, Welcome!!"
-            android:textColor="#000"
-            android:textSize="50dp"
-            android:transitionName="logo_Text" />
 
-        <TextView
-            android:id="@+id/second_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/miltonkeynes"
-            android:text="Login to continue"
-            android:textSize="25dp"
-            android:transitionName="slogan" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="25dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="#FFF"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
 
-            <!-- Usernanme-->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <ImageView
+                android:id="@+id/logo_img"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:src="@drawable/book"
+                android:transitionName="logo_img" />
+
+            <TextView
+                android:id="@+id/logo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hiluck"
+                android:text="Hello, Welcome!!"
+                android:textColor="#000"
+                android:textSize="50dp"
+                android:transitionName="logo_Text" />
+
+            <TextView
+                android:id="@+id/second_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/miltonkeynes"
+                android:text="Login to continue"
+                android:textSize="25dp"
+                android:transitionName="slogan" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/log_email"
+                <!-- Usernanme-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:transitionName="uname" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="Email">
 
-            <!-- Password-->
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                app:passwordToggleEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/log_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:transitionName="uname" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/log_pass"
+                <!-- Password-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:transitionName="passwd" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="Password"
+                    app:passwordToggleEnabled="true">
 
-            <Button
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/log_pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:transitionName="passwd" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                android:id="@+id/log_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="#000"
-                android:text="Login"
-                android:textColor="#FFF"
-                android:transitionName="loginbtn" />
+                <Button
 
-            <Button
-                android:id="@+id/sbtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_margin="5dp"
-                android:background="#00ffffcc"
-                android:elevation="0dp"
-                android:onClick="signUp"
-                android:text="New User? SIGN UP"
-                android:transitionName="signupbtn" />
+                    android:id="@+id/log_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#000"
+                    android:text="Login"
+                    android:textColor="#FFF"
+                    android:transitionName="loginbtn" />
+
+                <Button
+                    android:id="@+id/sbtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="5dp"
+                    android:background="#00ffffcc"
+                    android:elevation="0dp"
+                    android:onClick="signUp"
+                    android:text="New User? SIGN UP"
+                    android:transitionName="signupbtn" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_circle"
+                android:layout_width="50dp"
+                android:layout_gravity="center"
+
+                android:layout_height="50dp"
+                android:indeterminateDrawable="@drawable/progress" />
+
+
         </LinearLayout>
 
-    </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_circle"
-        android:layout_width="50dp"
+    </RelativeLayout>
 
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:indeterminateDrawable="@drawable/progress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

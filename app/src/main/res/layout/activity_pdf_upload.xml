@@ -8,10 +8,12 @@
     android:orientation="vertical"
     tools:context=".PdfUploadActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="34dp">
 
 
         <RelativeLayout
@@ -21,19 +23,19 @@
 
 
             <ImageView
+                android:id="@+id/backbtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="goBAK"
-                android:id="@+id/backbtn"
                 android:layout_centerVertical="true"
+                android:onClick="goBAK"
                 android:src="@drawable/back_icon" />
 
             <TextView
-                android:paddingLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/amaranth_italic"
+                android:paddingLeft="20dp"
                 android:text="Uplaod Pdf's"
                 android:textColor="@color/lightWhite"
                 android:textSize="40dp" />
@@ -42,12 +44,12 @@
 
 
         <LinearLayout
-            android:background="@color/banner_background_light"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/banner_background_light"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -57,21 +59,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="15dp"
-                app:boxCornerRadiusBottomEnd="5dp"
-                app:hintTextColor="@color/card"
                 android:textColorLink="@color/card"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp"
 
-                app:boxCornerRadiusTopStart="5dp">
+                app:hintTextColor="@color/card">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
                     android:id="@+id/pdfName"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Book Title"
-                    android:textColorLink="@color/card"
+                    android:textColor="@color/lightWhite"
                     android:textColorHighlight="@color/card"
                     android:textColorHint="#c1c1c1"
-                    android:textColor="@color/lightWhite" />
+                    android:textColorLink="@color/card" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,13 +86,13 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="@color/White"
-
                     android:layout_height="match_parent"
 
                     android:layout_marginLeft="58dp"
+
                     android:gravity="center"
-                    android:text="Select your SEM" />
+                    android:text="Select your SEM"
+                    android:textColor="@color/White" />
 
 
                 <Spinner
@@ -114,12 +116,12 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textColor="@color/White"
-
                     android:layout_height="match_parent"
+
                     android:layout_marginLeft="58dp"
                     android:gravity="center"
-                    android:text="Select subject" />
+                    android:text="Select subject"
+                    android:textColor="@color/White" />
 
 
                 <Spinner
@@ -136,29 +138,24 @@
             </LinearLayout>
 
 
-
-
-
-
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <com.google.android.material.button.MaterialButton
 
-                    android:layout_width="wrap_content"
                     android:id="@+id/choose_pdf"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
                     android:background="#c1c1c1"
-                    app:cornerRadius="15dp"
+                    android:elevation="15dp"
+                    android:text="choose PDF File "
                     android:textColor="@color/lightWhite"
                     android:textSize="15sp"
-                    android:text="choose PDF File "
-                    android:layout_alignParentRight="true"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:elevation="15dp"/>
+                    app:cornerRadius="15dp" />
 
                 <Button
                     android:id="@+id/UploadPdf"
@@ -170,7 +167,6 @@
                     android:background="@drawable/buyer_action_btn"
                     android:elevation="15dp"
                     android:fontFamily="@font/miltonkeynes"
-                    android:onClick="UploadPdf"
                     android:text="Upload"
                     android:textColor="#FFF"
                     android:textSize="15dp"
@@ -178,9 +174,7 @@
                     app:cornerRadius="15dp" />
 
 
-
             </RelativeLayout>
-
 
 
         </LinearLayout>
@@ -191,18 +185,18 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="149dp"
             android:indeterminate="true"
             android:visibility="invisible" />
 
 
-    </LinearLayout>
-
-
-
-
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
