@@ -279,6 +279,7 @@
                     android:layout_marginTop="15dp">
 
                     <Button
+                        android:layout_marginLeft="15dp"
                         android:id="@+id/call_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -288,13 +289,13 @@
                         android:textColor="#FFF" />
 
                     <Button
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="120dp"
-
                         android:id="@+id/whats_app_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="104dp"
+
+                        android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
+                        android:layout_marginLeft="120dp"
+                        android:layout_marginRight="20dp"
                         android:background="@drawable/buyer_action_btn"
                         android:onClick="sendWhatsApp"
                         android:text="Whats app"
