@@ -13,6 +13,7 @@
 
 
         <LinearLayout
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -34,7 +35,8 @@
 
             <EditText
                 android:id="@+id/search_text"
-                android:layout_width="250dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
