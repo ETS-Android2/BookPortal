@@ -23,14 +23,18 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,8 +54,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SellActivity extends AppCompatActivity {
@@ -64,18 +71,19 @@ public class SellActivity extends AppCompatActivity {
     private EditText mBookName;
     private EditText mAuthorName;
     private EditText mDescription;
+    private Spinner semSpinner;
     private ProgressBar mProgressBar;
     private ProgressBar mProgressCircle;
     private ImageView mImageView;
     private TextView offView;
     private Uri mImageUri;
-
     private StorageReference mStorageRef;
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
-    Boolean btnClicked = false;
-     String bookName ,description ,authorName;
-    String collegePath, combinationPath, phone , owerName;
+    private Boolean btnClicked = false;
+    private String bookName ,description ,authorName;
+    private String collegePath, combinationPath, phone , owerName;
+    ArrayAdapter<Integer> semAdapterBook;
 
 
     private static final int CAMERA_PERMISSION_CODE = 100;
@@ -96,6 +104,7 @@ public class SellActivity extends AppCompatActivity {
         mAuthorName = findViewById(R.id.author_name);
         mDescription = findViewById(R.id.description);
         offView = findViewById(R.id.textOff);
+        semSpinner = findViewById(R.id.semSpinnerBookUpload);
 
         mProgressCircle.setVisibility(View.INVISIBLE);
 
@@ -118,6 +127,40 @@ public class SellActivity extends AppCompatActivity {
                 selectImage();
             }
         });
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+
+            }
+        });
+
+
+        List<String> sem = new ArrayList<String>();
+        sem.add("Non selected");
+        for(int no =1 ; no <= 8; no ++){
+            sem.add(String.valueOf(no));
+        }
+
+
+        semAdapterBook = new ArrayAdapter(SellActivity.this, android.R.layout.simple_spinner_dropdown_item, sem);
+        semSpinner.setAdapter(semAdapterBook);
+
+        semSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(globalData, "see", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                Toast.makeText(globalData, "not seleted", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
 
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override

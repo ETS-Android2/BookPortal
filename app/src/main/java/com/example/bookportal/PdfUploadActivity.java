@@ -1,20 +1,12 @@
 package com.example.bookportal;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
-import android.util.Log;
+import android.os.Trace;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -25,13 +17,18 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,31 +43,24 @@ import java.util.Map;
 
 public class PdfUploadActivity extends AppCompatActivity {
 
-    private Button choosePdf , UploadPdf;
     final static int PICK_PDF_CODE = 12;
-    private EditText pdfname;
     ProgressBar progressBarPDF;
-
-    private Uri pdfData;
-
-    private Spinner semSpinner;
-    private Spinner subjectSpinner;
-
     ArrayAdapter<String> semAdapter, subAdapter;
     ArrayList<String> semList, subList;
-    private  String semUload , subUload;
-
-
-
-    private StorageReference mStorageRef;
-
-
-    private FirebaseFirestore mStore;
-    private FirebaseAuth mAuth;
     CollectionReference subjectsRef;
     String collegePath, combinationPath, phone;
-
     Boolean btnClicked = false;
+    private Button choosePdf, UploadPdf;
+    private EditText pdfname;
+    private Uri pdfData;
+    private Spinner semSpinner;
+    private Spinner subjectSpinner;
+    private String semUload, subUload;
+    private StorageReference mStorageRef;
+    private FirebaseFirestore mStore;
+    private FirebaseAuth mAuth;
+    private Boolean proceed = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +72,6 @@ public class PdfUploadActivity extends AppCompatActivity {
         UploadPdf = findViewById(R.id.UploadPdf);
 
 
-
-
-
         final GlobalData globalData = (GlobalData) getApplication();
         collegePath = globalData.getCollegePath();
         combinationPath = globalData.getCombinationPath();
@@ -93,7 +80,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("PDFuploads");
         mStore = FirebaseFirestore.getInstance();
-       // subjectsRef=mStore.collection("College");
+        // subjectsRef=mStore.collection("College");
         subjectsRef = mStore.collection("College")
                 .document(collegePath)
                 .collection("Combination")
@@ -112,16 +99,13 @@ public class PdfUploadActivity extends AppCompatActivity {
         getSpinnerData();
 
 
-
         semList = new ArrayList<>();
-        semAdapter =new ArrayAdapter<String>(PdfUploadActivity.this, android.R.layout.simple_spinner_dropdown_item, semList);
+        semAdapter = new ArrayAdapter<String>(PdfUploadActivity.this, android.R.layout.simple_spinner_dropdown_item, semList);
         semSpinner.setAdapter(semAdapter);
 
         subList = new ArrayList<>();
-        subAdapter =new ArrayAdapter<String>(PdfUploadActivity.this, android.R.layout.simple_spinner_dropdown_item, subList);
+        subAdapter = new ArrayAdapter<String>(PdfUploadActivity.this, android.R.layout.simple_spinner_dropdown_item, subList);
         subjectSpinner.setAdapter(subAdapter);
-
-
 
 
         semSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -146,6 +130,12 @@ public class PdfUploadActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 subUload = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), subUload, Toast.LENGTH_SHORT).show();
+                if(!subUload.equals("Non Selected")){
+                    proceed= true;
+
+                }else{
+                    Toast.makeText(parent.getContext(), "Subject cannot be non", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
@@ -158,13 +148,9 @@ public class PdfUploadActivity extends AppCompatActivity {
         choosePdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!btnClicked){
                     getPDF();
 
-                }else{
-                    Toast.makeText(PdfUploadActivity.this, "Please wait uploading....", Toast.LENGTH_SHORT).show();
-                }
-                
+
             }
         });
 
@@ -172,48 +158,56 @@ public class PdfUploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                btnClicked = true;
+                if (proceed) {
+                    if (!btnClicked) {
+                        btnClicked = true;
 
-                progressBarPDF.setVisibility(View.VISIBLE);
+                    progressBarPDF.setVisibility(View.VISIBLE);
 
-                final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
+                    final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
 
-                fileReference.putFile(pdfData)
-                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    fileReference.putFile(pdfData)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        String downloadURL = uri.toString();
-                                        String pdfName = pdfname.getText().toString();
+                                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            String downloadURL = uri.toString();
+                                            String pdfName = pdfname.getText().toString();
 
-                                        uploadTextdata(downloadURL,pdfName);
-                                    }
-                                });
-
-
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                btnClicked = false;
-                                progressBarPDF.setVisibility(View.INVISIBLE);
-                                Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            uploadTextdata(downloadURL, pdfName);
+                                        }
+                                    });
 
 
-                            }
-                        })
-                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    btnClicked = false;
+                                    progressBarPDF.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(PdfUploadActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            }
-                        });
+
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                                }
+                            });
 
 
+                    }else {
+                        Toast.makeText(PdfUploadActivity.this, "Please wait uploading....", Toast.LENGTH_SHORT).show();
+                        }
+                }else{
+                    Toast.makeText(PdfUploadActivity.this, "select subject ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -228,7 +222,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     subList.clear();
-                    subList.add(0,"Non Selected");
+                    subList.add(0, "Non Selected");
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String subject = document.getString("name");
                         subList.add(subject);
@@ -238,7 +232,6 @@ public class PdfUploadActivity extends AppCompatActivity {
 
             }
         });
-
 
 
     }
@@ -252,7 +245,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     semList.clear();
-                    semList.add(0,"Non Selected");
+                    semList.add(0, "Non Selected");
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String semData = document.getString("sem");
                         semList.add(semData);
@@ -298,7 +291,7 @@ public class PdfUploadActivity extends AppCompatActivity {
 //                uploadFile(data.getData());
                 pdfData = data.getData();
                 UploadPdf.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 Toast.makeText(this, "No file chosen", Toast.LENGTH_SHORT).show();
             }
         }
@@ -341,7 +334,7 @@ public class PdfUploadActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 btnClicked = false;
                 progressBarPDF.setVisibility(View.INVISIBLE);
-                Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PdfUploadActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -355,52 +348,7 @@ public class PdfUploadActivity extends AppCompatActivity {
         finish();
     }
 
-//
-//    public void UploadPdf(View view) {
-//
-//        btnClicked = true;
-//
-//        progressBarPDF.setVisibility(View.VISIBLE);
-//
-//        final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + ".pdf");
-//
-//        fileReference.putFile(pdfData)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                String downloadURL = uri.toString();
-//                                String pdfName = pdfname.getText().toString();
-//
-//                                uploadTextdata(downloadURL,pdfName);
-//                            }
-//                        });
-//
-//
-//
-//
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        btnClicked = false;
-//                        progressBarPDF.setVisibility(View.INVISIBLE);
-//                        Toast.makeText(PdfUploadActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//
-//                    }
-//                })
-//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                    }
-//                });
-//    }
+
 
     public void goBAK(View view) {
         startActivity(new Intent(PdfUploadActivity.this, PdfOperationActivity.class));

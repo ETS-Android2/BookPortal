@@ -25,7 +25,6 @@
         <activity android:name=".DeletePDFActivity" />
         <activity android:name=".PdfUploadActivity" />
         <activity android:name=".PdfActivity" />
-        <activity android:name=".BookStoreActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MyBookActivity" />
         <activity android:name=".SearchActivity" />
