@@ -1,13 +1,5 @@
 package com.example.bookportal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,6 +8,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookportal.adapter.ItemsRecyclerAdapter;
 import com.example.bookportal.domain.Items;
@@ -32,21 +31,19 @@ import java.util.List;
 
 public class BookStoreActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    static final float END_SCALE = 0.7f;
     //Drawer Menu
     DrawerLayout drawerlayout;
     NavigationView navvigationView;
     ImageView menuIcon;
     LinearLayout contentView;
-    static final float END_SCALE = 0.7f;
-
-
     private FirebaseFirestore mStore;
     private FirebaseAuth mAuth;
     private ProgressBar mProgressCircleBookSore;
 
     private List<Items> mItemList;
     private RecyclerView itemRecyclerView;
-    private ItemsRecyclerAdapter itemsRecyclerAdapter , searchRecyclerAdapter;
+    private ItemsRecyclerAdapter itemsRecyclerAdapter, searchRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +52,7 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_book_store);
 
 
-
-        mProgressCircleBookSore=findViewById(R.id.main_progress_circle_1);
+        mProgressCircleBookSore = findViewById(R.id.main_progress_circle_1);
         //navigation
         contentView = findViewById(R.id.content);
 
@@ -71,27 +67,20 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
         navigationDrawer();
 
 
-
-
-
-
-
-
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
         //mSearchText = findViewById(R.id.search_text);
 
-       // mProgressCircle = findViewById(R.id.progress_circle);
+        // mProgressCircle = findViewById(R.id.progress_circle);
 
         final GlobalData globalData = (GlobalData) getApplication();
-
 
 
         mItemList = new ArrayList<>();
         itemRecyclerView = findViewById(R.id.bookstore_recycler);
         //itemRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         itemRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this, mItemList,false);
+        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this, mItemList, false);
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
 
 
@@ -115,8 +104,7 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
             }
         });
 
-       animateNavbar();
-
+        animateNavbar();
 
 
     }
@@ -148,7 +136,7 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
 
     private void getMyBookData() {
 
-        String collegePath , combinationPath , userID;
+        String collegePath, combinationPath, userID;
         final GlobalData globalData = (GlobalData) getApplication();
 
 
@@ -179,16 +167,12 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
         });
 
 
-
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_shop:
-                startActivity(new Intent(BookStoreActivity.this, BookStoreActivity.class));
-                break;
             case R.id.nav_pdf:
                 startActivity(new Intent(BookStoreActivity.this, PdfOperationActivity.class));
                 break;
@@ -217,10 +201,10 @@ public class BookStoreActivity extends AppCompatActivity implements NavigationVi
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
             drawerlayout.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             startActivity(new Intent(BookStoreActivity.this, MainActivity.class));
             finish();
         }

@@ -19,10 +19,7 @@
             android:id="@+id/nav_pdf"
             android:icon="@drawable/pdf_icon"
             android:title="@string/navpdf" />
-        <item
-            android:id="@+id/nav_shop"
-            android:icon="@drawable/shop_icon"
-            android:title="@string/navshop" />
+
 
 
     </group>

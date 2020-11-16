@@ -118,8 +118,6 @@ public class PdfOperationActivity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_shop:
-                startActivity(new Intent(PdfOperationActivity.this, BookStoreActivity.class));
             case R.id.nav_pdf:
                 break;
             case R.id.nav_home:

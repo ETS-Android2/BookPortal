@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
-        android:background="#252323"
+        android:background="@color/White"
         android:orientation="vertical">
 
         <ImageView
@@ -28,9 +28,8 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/baloo"
             android:text="DSA"
-            android:textColor="@color/White"
+            android:textColor="@color/black"
             android:textSize="15sp" />
 
 
@@ -39,7 +38,7 @@
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/White"
+            android:textColor="@color/black"
 
             android:text="Author"/>
 

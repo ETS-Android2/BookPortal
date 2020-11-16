@@ -1,13 +1,5 @@
 package com.example.bookportal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,8 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.bookportal.adapter.ItemsRecyclerAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookportal.adapter.ItemsRecyclerAdapter;
 import com.example.bookportal.domain.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,47 +35,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 //public class MainActivity extends AppCompatActivity implements ItemsRecyclerAdapter.OnItemClickListener
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FirebaseFirestore mStore;
-    private FirebaseAuth mAuth;
-    private LinearLayout pdfActivity, sellbook, bookstore ,scheme;
-
-    private List<Items> mItemList;
-    private RecyclerView itemRecyclerView;
-    private ItemsRecyclerAdapter itemsRecyclerAdapter , searchRecyclerAdapter;
-
-    private EditText mSearchText;
-
-
-    private ProgressBar mProgressCircle;
-    private Toolbar mToolBar;
-    String collegePath, combinationPath , phone , name;
-
-    private Boolean DataLoading =true;
-
-
-    //SEARCH
-    private List<Items> mItemSearchList;
-    //private List<SearchItems> mItemSearchList;
-    private RecyclerView mItemSearchRecyclerView;
-    //private SearchRecyclerAdapter searchRecyclerAdapter;
-
-
-
-
+    static final float END_SCALE = 0.7f;
+    String collegePath, combinationPath, phone, name;
     RecyclerView searchedRecycler, mostviewedRecycler;
     RecyclerView.Adapter adapter;
     ImageView menuIcon;
     LinearLayout contentView;
-    static final float END_SCALE= 0.7f;
-
-    //Drawer Menu
-
     DrawerLayout drawerlayout;
     NavigationView navvigationView;
+    private FirebaseFirestore mStore;
+    private FirebaseAuth mAuth;
+    private LinearLayout pdfActivity, sellbook, bookstore, scheme;
+    private List<Items> mItemList;
+    private RecyclerView itemRecyclerView;
+    //private SearchRecyclerAdapter searchRecyclerAdapter;
+    private ItemsRecyclerAdapter itemsRecyclerAdapter, searchRecyclerAdapter;
+    private EditText mSearchText;
+    private ProgressBar mProgressCircle;
+    private Toolbar mToolBar;
+    private Boolean DataLoading = true;
 
-
+    //Drawer Menu
+    //SEARCH
+    private List<Items> mItemSearchList;
+    //private List<SearchItems> mItemSearchList;
+    private RecyclerView mItemSearchRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(mToolBar);
         pdfActivity = findViewById(R.id.pdfActivity);
         sellbook = findViewById(R.id.sellbook);
-        bookstore = findViewById(R.id.bookstore);
         scheme = findViewById(R.id.scheme);
 
         mAuth = FirebaseAuth.getInstance();
@@ -109,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Recyclers
         //searchedRecycler = findViewById(R.id.searched_recycler);
-       // mostviewedRecycler = findViewById(R.id.mostviewed_recycler);
+        // mostviewedRecycler = findViewById(R.id.mostviewed_recycler);
 
         //Menu
         drawerlayout = findViewById(R.id.drawer_layout);
@@ -126,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         itemRecyclerView = findViewById(R.id.mostviewed_recycler);
         //itemRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         itemRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this, mItemList,false);
+        itemsRecyclerAdapter = new ItemsRecyclerAdapter(this, mItemList, false);
         itemRecyclerView.setAdapter(itemsRecyclerAdapter);
 
 
@@ -134,10 +118,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
 
-                if(DataLoading){
+                if (DataLoading) {
                     Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent(MainActivity.this,PdfOperationActivity.class);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, PdfOperationActivity.class);
                     startActivity(intent);
 
                 }
@@ -150,11 +134,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
 
-                if(DataLoading){
+                if (DataLoading) {
                     Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
 
-                    Intent intent = new Intent(MainActivity.this,SchemeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SchemeActivity.class);
                     startActivity(intent);
 
                 }
@@ -169,39 +153,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
 
 
-                if(DataLoading){
+                if (DataLoading) {
                     Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
 
-                    Intent intent = new Intent(MainActivity.this,SellActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SellActivity.class);
                     startActivity(intent);
 
                 }
-
-
 
 
             }
         });
 
 
-        bookstore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(DataLoading){
-                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
-                }else{
 
-                    Intent intent = new Intent(MainActivity.this,BookStoreActivity.class);
-                    startActivity(intent);
-
-                }
-
-
-
-
-            }
-        });
 
 
         mStore.collection("User").document(mAuth.getCurrentUser().getUid())
@@ -254,13 +220,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onFailure(@NonNull Exception e) {
                 DataLoading = false;
                 mProgressCircle.setVisibility(View.INVISIBLE);
-                Toast.makeText(MainActivity.this, "Failed to load " +e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Failed to load " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
-
 
 
     //Navigation methods defined
@@ -274,9 +239,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                break;
-            case R.id.nav_shop:
-                startActivity(new Intent(MainActivity.this, BookStoreActivity.class));
                 break;
             case R.id.nav_pdf:
                 startActivity(new Intent(MainActivity.this, PdfOperationActivity.class));
@@ -299,7 +261,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
 
 
-    
     }
 
     private void navigationDrawer() {
@@ -309,26 +270,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navvigationView.setCheckedItem(R.id.nav_home);
 
 
+        menuIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (DataLoading) {
+                    Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
+                } else {
 
 
-
-            menuIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (DataLoading) {
-                        Toast.makeText(MainActivity.this, "Please wait", Toast.LENGTH_SHORT).show();
-                    } else {
-
-
-                        if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
-                            drawerlayout.closeDrawer(GravityCompat.START);
-                        } else
-                            drawerlayout.openDrawer(GravityCompat.START);
-                    }
+                    if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
+                        drawerlayout.closeDrawer(GravityCompat.START);
+                    } else
+                        drawerlayout.openDrawer(GravityCompat.START);
                 }
+            }
 
 
-            });
+        });
 
 
         animateNavbar();
@@ -342,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 //scale the view on slide offset
                 final float diffScaledOffset = slideOffset * (1 - END_SCALE);
-                final float offsetScale = 1-diffScaledOffset;
+                final float offsetScale = 1 - diffScaledOffset;
                 contentView.setScaleX(offsetScale);
                 contentView.setScaleY(offsetScale);
 
@@ -360,10 +318,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(drawerlayout.isDrawerVisible(GravityCompat.START)){
+        if (drawerlayout.isDrawerVisible(GravityCompat.START)) {
             drawerlayout.closeDrawer(GravityCompat.START);
-        }
-        else{
+        } else {
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

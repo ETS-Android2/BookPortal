@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,13 +36,15 @@ import java.util.List;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class  DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
     private ImageView bookImage;
     private TextView bookName;
     private TextView authorName;
     private TextView bookDes;
     private TextView ownerName;
     private ImageButton delBtn;
+    private Button whatsApp, callBtn;
+    private LinearLayout layout;
     String number, docID;
     Boolean correctUser = false;
 
@@ -70,9 +73,10 @@ public class  DetailActivity extends AppCompatActivity {
         authorName = findViewById(R.id.author_name_det);
         bookDes = findViewById(R.id.book_des_det);
         delBtn = findViewById(R.id.delBtn);
-        ownerName =findViewById(R.id.owner_name);
+        ownerName = findViewById(R.id.owner_name);
+        layout = findViewById(R.id.linearLayoutView);
 
-        delBtn.setVisibility(INVISIBLE);
+        delBtn.setVisibility(View.GONE);
 
 
         mProgressCircle = findViewById(R.id.progress_circle_detail);
@@ -93,7 +97,6 @@ public class  DetailActivity extends AppCompatActivity {
         authorName.setText(items.getAuthor());
         bookDes.setText(items.getDescription());
         ownerName.setText(items.getOwerName());
-
         mStorage = FirebaseStorage.getInstance();
         mFireStore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -104,6 +107,7 @@ public class  DetailActivity extends AppCompatActivity {
 
         if (userID.equals(authConfirm)) {
             delBtn.setVisibility(VISIBLE);
+            layout.setVisibility(View.GONE);
             correctUser = true;
         }
 
@@ -134,7 +138,7 @@ public class  DetailActivity extends AppCompatActivity {
 
         //String phoneNumberWithCountryCode = "+918762623837";
 
-        if (!number.toString().contains("+91")) {
+        if (!number.contains("+91")) {
             number = "+91" + number;
         }
 
@@ -164,7 +168,7 @@ public class  DetailActivity extends AppCompatActivity {
 
         if (correctUser) {
             StorageReference photoRef = mStorage.getReferenceFromUrl(items.getImg_url());
-            photoRef.delete().addOnSuccessListener( new OnSuccessListener<Void>() {
+            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     mFireStore.collection("College").document(collegePath).collection("Combination")
@@ -239,7 +243,7 @@ public class  DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
 
             case 1: {

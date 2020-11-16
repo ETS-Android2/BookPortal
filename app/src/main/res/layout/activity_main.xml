@@ -16,15 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/lightWhite"
+            android:background="@color/White"
             android:theme="@style/navigationtheme"
             app:headerLayout="@layout/header_menu"
             app:menu="@menu/main_menu" />
+
         <LinearLayout
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/secondarybackground"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -70,6 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:id="@+id/scheme"
                             android:layout_width="wrap_content"
@@ -130,35 +131,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/bookstore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/card2"
-                                android:elevation="8dp">
-
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/shop_icon" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/store"
-                                android:textAlignment="center"
-                                android:textColor="#000000" />
-
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/pdfActivity"
@@ -245,8 +217,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
                         android:orientation="vertical"
-                        android:padding="20dp">
-                    </LinearLayout>
+                        android:padding="20dp"></LinearLayout>
 
                 </LinearLayout>
             </ScrollView>
