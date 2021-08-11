@@ -1,3 +1,8 @@
+How many times have to struggled to find that one particular notes(pdf) from the whatsapp ? 
+Amid the pandemic there is  need for an efficient median to share course materials such as notes, syllabus among the students, 
+Last year i made an Android App for which i recieved 3rd place in National level Mobile app developmenet competition organized by VIDYAVARDHAKA COLLEGE OF ENGINEERING.
+
+
 This app allows the students to share pdf material amongst the class
    - The material is sorted based on the subject
    - The material can be upload and downloaded by any student
