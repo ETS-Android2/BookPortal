@@ -1,3 +1,13 @@
+This app allows the students to share pdf material amongst the class
+   - The material is sorted based on the subject
+   - The material can be upload and downloaded by any student
+This allows the students to sell their old books by posting the picture of the books
+   - When a picture is posted only the student in that corresponding department is notified
+   - The interested student can contact via app , the app will redirect to whats app or call 
+The student have the access to all the syllabus 
+
+
+
 # BookPortal Demo
 https://user-images.githubusercontent.com/22415316/116382675-ca8d7a00-a833-11eb-8e78-2634215b0e7e.mp4
 
